@@ -12,7 +12,17 @@ Ce site propose des liens d'affiliation avec le programme d'affiliation d'Amazon
 - [Gray-Matter](https://github.com/jonschlinkert/gray-matter)
 - [remark](https://github.com/remarkjs/remark)
 - [remark-html](https://github.com/remarkjs/remark-html)
-- ...
+- [GitHub private](https://github.com/ArnaudMartin/nextjs-mui-blog)
+- [Vercel](https://vercel.com/) pour l'hébergement avec le CDN Vercel, la prise en charge du build incrémental (ISR), scalabilité automatique.
+
+## Informations utiles 
+- Adresse du siège social de Vercel : Vercel Inc. 340 S Lemon Ave #4133 Walnut, CA 91789, USA
+- Localisation des serveurs Vercel : Vercel dispose d'un réseau mondial de serveurs, appelé Vercel Edge Network, comprenant 119 points de présence (PoPs) répartis dans 94 villes à travers 51 pays. 
+
+Cette infrastructure permet de stocker le contenu au plus près des utilisateurs et d'exécuter des calculs dans des régions proches de vos données, réduisant ainsi la latence et améliorant les performances pour les utilisateurs finaux. 
+
+Pour votre page de politique de confidentialité, il est recommandé d'indiquer que les données de votre site peuvent être traitées et stockées sur les serveurs de Vercel, répartis dans le monde entier, y compris potentiellement en dehors de l'Union européenne. Cela assure une transparence quant à la localisation des données et au respect des réglementations en matière de protection des données.
+
 
 ## Pour commencer
 
@@ -36,14 +46,10 @@ Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur pour vo
 
 
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
+## Documentation
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
 
