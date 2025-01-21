@@ -28,13 +28,18 @@ export default function Home() {
   return (
     <ClientLayout>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Comparateur de solutions de stockage
-        </Typography>
-        <Typography variant="subtitle1" gutterBottom sx={{ mb: 4 }}>
-          Trouvez le meilleur rapport qualité/prix pour votre stockage
-        </Typography>
-        <ProductDataGrid products={products} />
+        <Box sx={{ my: 4 }}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Comparateur de solutions de stockage
+          </Typography>
+          <Typography variant="subtitle1" gutterBottom sx={{ mb: 4 }}>
+            Trouvez le meilleur rapport qualité/prix pour votre stockage.
+          </Typography>
+          <ProductDataGrid products={products} />
+          <Typography variant="caption" sx={{ display: 'block', mt: 2, textAlign: 'right', color: 'text.secondary' }}>
+            Données mises à jour le 21/01/2025
+          </Typography>
+        </Box>
       </Container>
     </ClientLayout>
   );
