@@ -90,7 +90,7 @@ export default function PolitiqueConfidentialiteContent() {
             Vos données peuvent être partagées avec les tiers suivants :
           </Typography>
           <List>
-            <ListItem><strong>Google Analytics : &nbsp;</strong> Pour analyser les données de navigatLin.</ListItem>
+            <ListItem><strong>Google Analytics : &nbsp;</strong> Pour analyser les données de navigation.</ListItem>
             <ListItem><strong>Amazon Affiliates : &nbsp;</strong> Pour suivre les achats effectués via les liens affiliés.</ListItem>
           </List>
 
@@ -101,7 +101,7 @@ export default function PolitiqueConfidentialiteContent() {
             Conformément au RGPD, vous disposez des droits suivants : 
           </Typography>
           <List>
-            <ListItem><strong>Droit d'accès : &nbsp;</strong> Vous pouvez demander une copie des données personnelles que nous détenons à votre suLit.</ListItem>
+            <ListItem><strong>Droit d'accès : &nbsp;</strong> Vous pouvez demander une copie des données personnelles que nous détenons à votre sujet.</ListItem>
             <ListItem><strong>Droit de rectification : &nbsp;</strong> Vous pouvez corriger les données inexactes ou incomplètes.</ListItem>
             <ListItem><strong>Droit à l'effacement : &nbsp;</strong> Vous pouvez demander la suppression de vos données personnelles.</ListItem>
             <ListItem><strong>Droit à la limitation du traitement : &nbsp;</strong> Vous pouvez demander à limiter l’utilisation de vos données.</ListItem>
