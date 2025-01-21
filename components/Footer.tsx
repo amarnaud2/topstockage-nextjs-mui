@@ -76,6 +76,18 @@ export default function Footer() {
             </Box>
           </Grid2>
         </Grid2>
+        <Typography 
+          variant="caption" 
+          sx={{ 
+            display: 'block', 
+            mt: 4, 
+            textAlign: 'justify',
+            opacity: 0.8,
+            fontSize: '0.7rem'
+          }}
+        >
+          Top Stockage participe au programme d'affiliation Amazon. Les liens d'achat présents sur ce site peuvent générer une commission pour nous, sans coût supplémentaire pour vous. Les prix et la disponibilité des produits sont exacts à la date et à l'heure indiquées et sont susceptibles de changer. Toute information sur les prix et la disponibilité affichée au moment de l'achat s'appliquera à l'achat du produit. CERTAINS CONTENUS QUI APPARAISSENT SUR CE SITE PROVIENNENT DES SERVICES D'AMAZON LLC. CES CONTENUS SONT FOURNIS "EN L'ÉTAT" ET PEUVENT ÊTRE MODIFIÉS OU SUPPRIMÉS À TOUT MOMENT.
+        </Typography>
       </Container>
     </Box>
   );
