@@ -1,0 +1,260 @@
+---
+title: "OpenMediaVault : Guide complet pour monter votre NAS en 2025"
+slug: "guide-complet-openmediavault-2025"
+description: "Découvrez comment créer votre serveur NAS avec OpenMediaVault : installation, configuration, plugins essentiels et matériel recommandé pour une solution de stockage open source performante."
+datePublished: "2025-01-21"
+dateRetired: ""
+author: "Arnaud"
+keywords:
+  - OpenMediaVault
+  - OMV
+  - NAS
+  - open source
+  - stockage réseau
+  - Debian
+  - DIY
+image: "/images/openmediavault-setup.jpg"
+imageCopyright: "Photo de Sora Shimazaki: https://www.pexels.com/fr-fr/photo/donnees-information-clavier-technologie-5926398/"
+canonical: "https://www.topstockage.fr/blog/nas/guide-complet-openmediavault-2025"
+---
+
+# OpenMediaVault : Guide complet pour monter votre NAS en 2025
+
+OpenMediaVault (OMV) est une solution NAS open source basée sur Debian, idéale pour créer un serveur de stockage domestique ou petit bureau. Découvrez comment monter votre propre NAS avec OMV.
+
+## Pourquoi choisir OpenMediaVault ?
+
+### Points forts
+- Basé sur Debian (stabilité)
+- Interface web intuitive
+- Légèreté du système
+- Large choix de plugins
+- Communauté active
+- Parfait pour débutants
+
+### Prérequis techniques
+- Connaissances Linux basiques
+- Notions de réseau
+- Compréhension du RAID
+
+## Configuration matérielle recommandée
+
+### Configuration minimale (Budget ~300€)
+- **Processeur** : Intel Celeron J4125 (89.99€)
+  - 4 cœurs
+  - TDP 10W
+  [Voir sur Amazon](#)
+
+- **Carte mère** : ASRock J4125-ITX (99.99€)
+  - 4 ports SATA
+  - Intel Gigabit LAN
+  [Voir sur Amazon](#)
+
+- **RAM** : 8Go DDR4 (39.99€)
+  - Simple module
+  - Suffisant pour démarrer
+  [Voir sur Amazon](#)
+
+- **Boîtier** : Fractal Design Node 304 (89.99€)
+  - 6 emplacements 3.5"
+  - Compact
+  [Voir sur Amazon](#)
+
+### Configuration recommandée (Budget ~500€)
+- **Processeur** : Intel Core i3-12100 (119.99€)
+  - Plus de puissance
+  - Support virtualisation
+  [Voir sur Amazon](#)
+
+- **Carte mère** : ASRock B660M-HDV (99.99€)
+  - 6 ports SATA
+  - Support M.2
+  [Voir sur Amazon](#)
+
+- **RAM** : 16Go DDR4 (79.99€)
+  - 2x8Go dual channel
+  - Pour Docker et VMs
+  [Voir sur Amazon](#)
+
+- **Boîtier** : Fractal Design Define R6 (149.99€)
+  - 11 emplacements 3.5"
+  - Silencieux
+  [Voir sur Amazon](#)
+
+## Installation d'OpenMediaVault
+
+### 1. Préparation
+1. Télécharger l'ISO OMV
+2. Créer une clé USB bootable
+3. Configurer le BIOS (UEFI)
+4. Connecter en ethernet
+
+### 2. Installation de base
+1. Suivre l'assistant d'installation
+2. Configuration réseau initiale
+3. Premier accès à l'interface web
+4. Mise à jour du système
+
+### 3. Configuration système
+1. Création des utilisateurs
+2. Configuration des disques
+3. Mise en place du RAID
+4. Configuration des partages
+
+## Plugins essentiels
+
+### 1. Docker
+- Conteneurisation d'applications
+- Installation simple
+- Isolation des services
+
+### 2. Portainer
+- Gestion des conteneurs Docker
+- Interface graphique
+- Déploiement facile
+
+### 3. Backup
+- Sauvegarde du système
+- Réplication des données
+- Snapshots
+
+## Services et applications populaires
+
+### Multimédia
+1. **Plex**
+```yaml
+version: '3'
+services:
+  plex:
+    image: linuxserver/plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /chemin/config:/config
+      - /chemin/media:/media
+```
+
+### Cloud personnel
+1. **Nextcloud**
+```yaml
+version: '3'
+services:
+  nextcloud:
+    image: nextcloud
+    ports:
+      - 8080:80
+    volumes:
+      - nextcloud:/var/www/html
+```
+
+### Téléchargement
+1. **Transmission**
+```yaml
+version: '3'
+services:
+  transmission:
+    image: linuxserver/transmission
+    ports:
+      - 9091:9091
+    volumes:
+      - /downloads:/downloads
+```
+
+## Optimisation des performances
+
+### 1. Système de fichiers
+- **ext4** : Performance et stabilité
+- **btrfs** : Fonctionnalités avancées
+- **xfs** : Grands fichiers
+
+### 2. Configuration réseau
+- Jumbo frames
+- Agrégation de liens
+- Cache SMB
+
+### 3. Optimisation Docker
+- Volumes bind
+- Réseau host
+- Limites ressources
+
+## Maintenance et sécurité
+
+### Sauvegardes
+1. Configuration système
+2. Données utilisateurs
+3. Conteneurs Docker
+
+### Sécurité
+1. Pare-feu
+2. Fail2ban
+3. HTTPS
+
+### Monitoring
+1. Netdata
+2. Grafana
+3. Prometheus
+
+## Dépannage courant
+
+### Problèmes réseau
+1. Vérification DNS
+2. Test connectivité
+3. Logs système
+
+### Problèmes disques
+1. SMART monitoring
+2. Test performances
+3. Vérification RAID
+
+## Extensions du système
+
+### 1. Virtualisation
+- Proxmox
+- VirtualBox
+- KVM
+
+### 2. Surveillance
+- Motion
+- ZoneMinder
+- Shinobi
+
+### 3. Domotique
+- Home Assistant
+- OpenHAB
+- Node-RED
+
+## Comparaison des configurations
+
+### Usage familial (~500€)
+- i3-12100
+- 16Go RAM
+- 2x4To WD Red Plus
+- RAID 1
+
+### Petit bureau (~800€)
+- i5-12400
+- 32Go RAM
+- 4x4To IronWolf
+- RAID 5
+
+## Conclusion
+
+OpenMediaVault est idéal pour :
+- Utilisateurs débutants Linux
+- Projets à budget limité
+- Besoins en stockage simples
+- Environnement domestique
+
+Avantages clés :
+1. Installation simple
+2. Interface intuitive
+3. Communauté active
+4. Flexibilité Docker
+
+Pour réussir votre projet :
+1. Choisir du matériel compatible
+2. Planifier la capacité
+3. Prévoir les sauvegardes
+4. Documenter la configuration

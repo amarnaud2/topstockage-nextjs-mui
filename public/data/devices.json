@@ -1,0 +1,30 @@
+[
+    {
+      "id": 1,
+      "asin": "BUYGYTF76",
+      "category": "SSD",
+      "capacity": "1 To",
+      "warranty": "3 years",
+      "title": "Disque SSD Samsung 1To",
+      "price": 120.99,
+      "pricePerTb": 120.99,
+      "formFactor": "External 2.5\"",
+      "currency": "EUR",
+      "features": ["1To", "USB-C", "3 ans de garantie"],
+      "amazonLink": "https://www.amazon.fr/"
+    },
+    {
+      "id": 2,
+      "asin": "BUYGYTF78",
+      "category": "Disque externe",
+      "capacity": "4To",
+      "warranty": "2 years",
+      "title": "WD My Passport 4To",
+      "price": 99.99,
+      "pricePerTb": 24.99,
+      "formFactor": "External 3.5\"",
+      "currency": "EUR",
+      "features": ["4To", "USB 3.0", "2 ans de garantie"],
+      "amazonLink": "https://www.amazon.fr/"
+    }
+]

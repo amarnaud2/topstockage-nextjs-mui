@@ -1,0 +1,208 @@
+---
+title: "Monter son NAS Open Source avec TrueNAS en 2025"
+slug: "monter-nas-opensource-truenas-2025"
+description: "Guide complet pour construire votre propre NAS avec TrueNAS : matériel recommandé, étapes d'installation et configuration optimale pour un stockage réseau performant et économique."
+datePublished: "2025-01-21"
+dateRetired: ""
+author: "Arnaud"
+keywords:
+  - NAS
+  - TrueNAS
+  - open source
+  - DIY
+  - ZFS
+  - stockage réseau
+  - serveur
+image: "/images/truenas-setup.jpg"
+imageCopyright: "Photo de Jakub Zerdzicki: https://www.pexels.com/fr-fr/photo/noir-et-blanc-technologie-equipement-materiel-19825057/"
+canonical: "https://www.topstockage.fr/blog/nas/monter-nas-opensource-truenas-2025"
+---
+
+# Monter son NAS Open Source avec TrueNAS en 2025
+
+TrueNAS (anciennement FreeNAS) est la solution open source la plus populaire pour créer son propre NAS. Découvrez comment monter votre serveur de stockage personnalisé avec un excellent rapport qualité/prix.
+
+## Pourquoi choisir TrueNAS ?
+
+### Avantages
+- Gratuit et open source
+- Système de fichiers ZFS robuste
+- Nombreuses fonctionnalités professionnelles
+- Communauté active
+- Performance optimale
+
+### Inconvénients
+- Configuration initiale plus complexe
+- Nécessite des connaissances techniques
+- Support communautaire uniquement
+
+## Configuration matérielle recommandée
+
+### Configuration de base (Budget ~500€)
+- **Processeur** : Intel Core i3-12100 (119.99€)
+  - 4 cœurs/8 threads
+  - Excellent rapport performance/prix
+  [Voir sur Amazon](#)
+
+- **Carte mère** : ASRock B660M Pro RS (89.99€)
+  - 6 ports SATA
+  - Support ECC (optionnel)
+  [Voir sur Amazon](#)
+
+- **RAM** : 16Go DDR4 ECC (89.99€)
+  - 2x8Go pour dual channel
+  - ECC recommandé pour ZFS
+  [Voir sur Amazon](#)
+
+- **Boîtier** : Fractal Design Node 804 (129.99€)
+  - 8 emplacements 3.5"
+  - Bonne ventilation
+  - Compact
+  [Voir sur Amazon](#)
+
+- **Alimentation** : Be Quiet! Pure Power 11 500W (69.99€)
+  - Fiable et silencieuse
+  - Rendement 80+ Gold
+  [Voir sur Amazon](#)
+
+### Configuration avancée (Budget ~1000€)
+- **Processeur** : Intel Core i5-13600K (319.99€)
+  - Pour la virtualisation
+  - Transcoding média
+  [Voir sur Amazon](#)
+
+- **Carte mère** : ASUS ProArt B760-CREATOR (199.99€)
+  - 8 ports SATA
+  - 2.5GbE intégré
+  [Voir sur Amazon](#)
+
+- **RAM** : 32Go DDR4 ECC (179.99€)
+  - 2x16Go
+  - Pour applications lourdes
+  [Voir sur Amazon](#)
+
+- **Boîtier** : Fractal Design Define 7 XL (199.99€)
+  - 18+ emplacements disques
+  - Silence optimisé
+  [Voir sur Amazon](#)
+
+- **Alimentation** : Seasonic Focus GX-750 (129.99€)
+  - Pour évolution future
+  - Garantie 10 ans
+  [Voir sur Amazon](#)
+
+## Choix des disques
+
+### Configuration RAID recommandée
+1. **RAID-Z1 (4 disques)**
+   - 3 disques données + 1 parité
+   - Capacité utilisable : 3x taille du disque
+   
+2. **RAID-Z2 (6 disques)**
+   - 4 disques données + 2 parité
+   - Plus sécurisé
+
+### Disques recommandés
+- **WD Red Plus** : Excellent rapport qualité/prix
+- **Seagate IronWolf** : Performances supérieures
+- **WD Red Pro** : Usage intensif
+
+[Guide complet sur le choix des disques pour NAS](#)
+
+## Installation et configuration
+
+### 1. Préparation
+1. Télécharger TrueNAS CORE
+2. Créer une clé USB bootable
+3. Assembler le matériel
+4. Configurer le BIOS
+
+### 2. Installation TrueNAS
+1. Boot sur la clé USB
+2. Suivre l'assistant d'installation
+3. Configurer le réseau
+4. Créer le pool ZFS
+
+### 3. Configuration avancée
+1. Mise en place des partages
+2. Configuration des sauvegardes
+3. Installation des plugins
+
+## Fonctionnalités essentielles
+
+### Stockage et partage
+- Partages SMB/CIFS (Windows)
+- NFS (Linux/Mac)
+- AFP (Mac legacy)
+- iSCSI
+
+### Applications populaires
+1. **Plex Media Server**
+   - Streaming média
+   - Transcoding matériel
+
+2. **NextCloud**
+   - Cloud personnel
+   - Synchronisation fichiers
+
+3. **Transmission**
+   - Client torrent
+   - Programmation téléchargements
+
+## Optimisation et maintenance
+
+### Performance
+1. Configuration du cache ZFS
+2. Optimisation réseau
+3. Monitoring système
+
+### Sauvegardes
+1. Snapshots automatiques
+2. Réplication distante
+3. Cloud Backup
+
+## Budget total par configuration
+
+### Configuration basique
+- Matériel : ~500€
+- 4x 4To WD Red Plus : ~400€
+- **Total** : ~900€
+
+### Configuration avancée
+- Matériel : ~1000€
+- 6x 8To IronWolf Pro : ~1200€
+- **Total** : ~2200€
+
+## Comparaison coût/bénéfice
+
+### vs NAS commercial
+- **Prix** : Plus économique pour grande capacité
+- **Performance** : Supérieure
+- **Flexibilité** : Maximale
+- **Maintenance** : Plus complexe
+
+### vs Cloud
+- **Coût mensuel** : Nul
+- **Performance** : Meilleure en local
+- **Contrôle** : Total
+- **Maintenance** : Nécessaire
+
+## Conclusion
+
+Monter son propre NAS avec TrueNAS est une excellente option pour :
+- Les utilisateurs techniques
+- Les budgets importants en stockage
+- Besoin de performances maximales
+- Volonté de contrôle total
+
+L'investissement initial est plus important qu'un NAS commercial, mais offre :
+- Meilleures performances
+- Plus grande évolutivité
+- Coût par To inférieur
+- Fonctionnalités professionnelles
+
+Pour réussir votre projet :
+1. Choisir du matériel fiable
+2. Ne pas négliger la RAM ECC
+3. Prévoir la capacité future
+4. Documenter votre installation
