@@ -37,7 +37,7 @@ export default function Home() {
           </Typography>
           <ProductDataGrid products={products} />
           <Typography variant="caption" sx={{ display: 'block', mt: 2, textAlign: 'right', color: 'text.secondary' }}>
-            Données mises à jour le 21/01/2025
+            Données mises à jour le 21/01/2025 à 22h15 (Europe/Paris).
           </Typography>
         </Box>
       </Container>
