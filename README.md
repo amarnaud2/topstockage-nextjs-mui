@@ -1,24 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![Top Stockage Logo](./public/logo.png)
 
-## Getting Started
+## Description
 
-First, run the development server:
+Découvrez Top Stockage, votre guide pour choisir le stockage idéal : comparatifs, conseils pratiques et liens d'achat pour SSD, disques durs et plus.
+Ce site propose des liens d'affiliation avec le programme d'affiliation d'Amazon.
+
+## Stack technique
+- [NextJS 15](https://nextjs.org/)
+- Typescript
+- [MUI](https://mui.com/x/whats-new/)
+- [Gray-Matter](https://github.com/jonschlinkert/gray-matter)
+- [remark](https://github.com/remarkjs/remark)
+- [remark-html](https://github.com/remarkjs/remark-html)
+- ...
+
+## Pour commencer
+
+Isntaller les dépendances :
+```bash
+npm install
+```
+
+Lancer le serveur de développement :
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur pour voir le site..
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+
+
+
+
 
 ## Learn More
 
