@@ -10,6 +10,15 @@ const roboto = Roboto({
 });
 
 const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,     // Mobile
+      sm: 600,   // Tablette
+      md: 960,   // Ordinateur portable
+      lg: 1280,  // Desktop
+      xl: 1920,  // Très grand écran
+    },
+  },
   palette: {
     primary: {
       main: '#556cd6',
