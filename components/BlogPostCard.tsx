@@ -1,84 +1,80 @@
 'use client';
 
 import { Card, CardContent, Typography, Box } from '@mui/material';
-import { BlogPost } from '@/lib/blog';
+import Image from 'next/image';
 import Link from 'next/link';
 import BlogPostDate from './BlogPostDate';
-import BlogImage from './BlogImage';
-
-interface BlogPostCardProps {
-  post: BlogPost;
-}
+import PlaceholderImage from './PlaceholderImage';
+import type { BlogPostCardProps } from '@/types/blog';
+import { useState } from 'react';
 
 export default function BlogPostCard({ post }: BlogPostCardProps) {
-  const { category, slug } = post;
-  const postUrl = `/blog/${category}/${slug.split('/')[1]}`;
+  const { title, description, image, slug, category, datePublished, author } = post;
+  const [imageError, setImageError] = useState(false);
 
   return (
-    <Link href={postUrl} style={{ textDecoration: 'none', display: 'block' }}>
-      <Card 
-        sx={{ 
-          height: '100%',
-          display: 'flex', 
-          flexDirection: 'column',
-          transition: 'transform 0.2s ease-in-out',
-          '&:hover': {
-            transform: 'translateY(-4px)',
-            boxShadow: (theme) => theme.shadows[4],
-          },
-        }}
-      >
-        <Box sx={{ position: 'relative', paddingTop: '56.25%' }}>
-          <BlogImage
-            src={post.image}
-            alt={post.title}
+    <Card 
+      component={Link}
+      href={`/blog/${category}/${slug}`}
+      sx={{ 
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        textDecoration: 'none',
+        '&:hover': {
+          boxShadow: 6,
+        },
+      }}
+    >
+      <Box sx={{ position: 'relative', width: '100%', height: 200 }}>
+        {imageError ? (
+          <PlaceholderImage />
+        ) : (
+          <Image
+            src={image}
+            alt={title}
             fill
-            style={{ 
-              objectFit: 'cover',
-              borderTopLeftRadius: '4px',
-              borderTopRightRadius: '4px',
-            }}
+            style={{ objectFit: 'cover' }}
+            priority
+            onError={() => setImageError(true)}
           />
+        )}
+      </Box>
+      <CardContent sx={{ flexGrow: 1, pt: 2 }}>
+        <Typography 
+          gutterBottom 
+          variant="h5" 
+          component="h2"
+          sx={{ 
+            fontSize: '1.25rem',
+            fontWeight: 600,
+            color: 'text.primary',
+            mb: 1,
+          }}
+        >
+          {title}
+        </Typography>
+        <Typography 
+          variant="body2" 
+          color="text.secondary"
+          sx={{ mb: 2 }}
+        >
+          {description}
+        </Typography>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            mt: 'auto',
+          }}
+        >
+          <Typography variant="caption" color="text.secondary">
+            Par {author}
+          </Typography>
+          <BlogPostDate date={datePublished} />
         </Box>
-        <CardContent sx={{ flexGrow: 1, p: 2 }}>
-          <Typography 
-            gutterBottom 
-            variant="h6" 
-            component="h2"
-            sx={{
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              display: '-webkit-box',
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: 'vertical',
-              lineHeight: 1.2,
-              minHeight: '2.4em',
-            }}
-          >
-            {post.title}
-          </Typography>
-          <Typography 
-            variant="body2" 
-            color="text.secondary" 
-            sx={{
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              display: '-webkit-box',
-              WebkitLineClamp: 3,
-              WebkitBoxOrient: 'vertical',
-              mb: 2,
-            }}
-          >
-            {post.description}
-          </Typography>
-          <Box sx={{ mt: 'auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Typography variant="caption" color="text.secondary">
-              Par {post.author}
-            </Typography>
-            <BlogPostDate date={post.datePublished} />
-          </Box>
-        </CardContent>
-      </Card>
-    </Link>
+      </CardContent>
+    </Card>
   );
 }

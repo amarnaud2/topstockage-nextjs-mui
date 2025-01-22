@@ -2,6 +2,7 @@
   "name": "nextjs-mui-blog",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -11,17 +12,22 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@mdx-js/react": "^3.1.0",
     "@mui/icons-material": "^6.4.0",
     "@mui/material": "^6.4.0",
     "@mui/material-nextjs": "^6.3.1",
     "@mui/x-data-grid": "^7.24.0",
+    "@next/mdx": "^15.1.6",
     "gray-matter": "^4.0.3",
     "next": "15.1.5",
     "next-mdx-remote": "^5.0.0",
     "next-seo": "^6.4.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "rehype-raw": "^7.0.0",
+    "rehype-stringify": "^10.0.1",
     "remark": "^15.0.1",
+    "remark-gfm": "^4.0.0",
     "remark-html": "^16.0.1"
   },
   "devDependencies": {

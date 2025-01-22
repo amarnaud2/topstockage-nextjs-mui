@@ -1,87 +1,100 @@
 'use client';
 
-import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import { Roboto } from 'next/font/google';
+import { createTheme } from '@mui/material/styles';
 
-let theme = createTheme({
-  // Palette configuration
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2',
+      main: '#556cd6',
     },
     secondary: {
-      main: '#dc004e',
+      main: '#19857b',
     },
   },
-  // Typography configuration with responsive font sizes
   typography: {
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-    ].join(','),
+    fontFamily: roboto.style.fontFamily,
     h1: {
-      fontSize: '2.5rem',
-      '@media (min-width:600px)': {
-        fontSize: '3rem',
-      },
-    },
-    h2: {
       fontSize: '2rem',
+      fontWeight: 700,
       '@media (min-width:600px)': {
         fontSize: '2.5rem',
       },
     },
-    h3: {
+    h2: {
       fontSize: '1.75rem',
+      fontWeight: 600,
       '@media (min-width:600px)': {
         fontSize: '2rem',
       },
     },
-  },
-  // Components default props and style overrides
-  components: {
-    MuiContainer: {
-      defaultProps: {
-        maxWidth: 'lg',
+    h3: {
+      fontSize: '1.5rem',
+      fontWeight: 600,
+      '@media (min-width:600px)': {
+        fontSize: '1.75rem',
       },
+    },
+    h4: {
+      fontSize: '1.25rem',
+      fontWeight: 600,
+    },
+    h5: {
+      fontSize: '1.1rem',
+      fontWeight: 600,
+    },
+    h6: {
+      fontSize: '1rem',
+      fontWeight: 600,
+    },
+    body1: {
+      fontSize: '1rem',
+      lineHeight: 1.6,
+    },
+    body2: {
+      fontSize: '0.875rem',
+      lineHeight: 1.6,
+    },
+  },
+  components: {
+    MuiTable: {
       styleOverrides: {
         root: {
-          paddingLeft: '16px',
-          paddingRight: '16px',
-          '@media (min-width:600px)': {
-            paddingLeft: '24px',
-            paddingRight: '24px',
+          marginBottom: '1.5rem',
+        },
+      },
+    },
+    MuiTableHead: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#556cd6',
+        },
+      },
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        head: {
+          color: '#ffffff',
+          fontWeight: 600,
+        },
+      },
+    },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          '&:nth-of-type(even)': {
+            backgroundColor: '#f5f5f5',
           },
         },
       },
     },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-        },
-      },
-    },
-  },
-  // Breakpoints configuration (mobile first)
-  breakpoints: {
-    values: {
-      xs: 0,      // Mobile phones
-      sm: 600,    // Tablets
-      md: 960,    // Small laptops
-      lg: 1280,   // Desktops
-      xl: 1920,   // Large screens
-    },
   },
 });
-
-// Apply responsive font sizes
-theme = responsiveFontSizes(theme);
 
 export default theme;

@@ -21,26 +21,30 @@ export default function Home() {
         console.error('Error loading products:', error);
       }
     };
-
     fetchProducts();
   }, []);
 
   return (
     <ClientLayout>
-      <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        <Box sx={{ my: 4 }}>
-          <Typography variant="h4" component="h1" gutterBottom>
-            Comparateur de solutions de stockage
-          </Typography>
-          <Typography variant="subtitle1" gutterBottom sx={{ mb: 4 }}>
-            Trouvez le meilleur rapport qualité/prix pour votre stockage.
-          </Typography>
-          <ProductDataGrid products={products} />
-          <Typography variant="caption" sx={{ display: 'block', mt: 2, textAlign: 'right', color: 'text.secondary' }}>
-            Données mises à jour le 21/01/2025 à 22h15 (Europe/Paris).
-          </Typography>
-        </Box>
-      </Container>
+      <Box sx={{ my: 4 }}>
+        <Typography variant="h1" component="h1" gutterBottom>
+          Bienvenue sur Top Stockage
+        </Typography>
+        <Typography variant="h2" gutterBottom>
+          Votre guide pour choisir le meilleur stockage
+        </Typography>
+        <Typography variant="body1" paragraph>
+          Découvrez notre sélection des meilleurs SSD et disques durs, avec des comparatifs détaillés et des conseils d'experts.
+        </Typography>
+        {products.length > 0 && (
+          <Box sx={{ mt: 4 }}>
+            <Typography variant="h3" gutterBottom>
+              Nos dernières recommandations
+            </Typography>
+            <ProductDataGrid products={products} />
+          </Box>
+        )}
+      </Box>
     </ClientLayout>
   );
 }

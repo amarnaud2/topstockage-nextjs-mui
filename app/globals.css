@@ -19,3 +19,84 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Styles pour les tableaux MDX */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+th {
+  background-color: #89b0ff;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+/* Styles pour les tableaux */
+.table-wrapper {
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+.table-wrapper thead {
+  background-color: #89b0ff;
+}
+
+.table-wrapper th {
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table-wrapper td {
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table-wrapper tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.table-wrapper tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-wrapper a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.table-wrapper a:hover {
+  text-decoration: underline;
+}

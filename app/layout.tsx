@@ -1,9 +1,13 @@
-import { Metadata } from 'next';
-import { Providers } from '@/components/Providers';
+import type { Metadata } from 'next';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from '@/theme/theme';
+import '@/app/globals.css';
 
 export const metadata: Metadata = {
-  title: 'Top Stockage',
-  description: "Découvrez Top Stockage, votre guide pour choisir le stockage idéal : comparatifs, conseils pratiques et liens d'achat pour SSD, disques durs et plus.",
+  title: 'Top Stockage - Guide d\'achat et comparatif stockage',
+  description: 'Découvrez nos guides d\'achat et comparatifs pour choisir le meilleur stockage : SSD, disques durs externes, NAS. Conseils d\'experts et tests approfondis.',
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -24,7 +28,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  manifest: '/site.webmanifest',
 };
 
 export default function RootLayout({
@@ -35,7 +38,12 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        {children}
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            {children}
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

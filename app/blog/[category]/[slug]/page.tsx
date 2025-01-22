@@ -1,56 +1,54 @@
-import { Container, Typography, Box } from '@mui/material';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import ClientLayout from '@/components/ClientLayout';
-import { getAllPosts, getPostBySlug } from '@/lib/blog';
-import BlogPostDate from '@/components/BlogPostDate';
 import { notFound } from 'next/navigation';
+import { getAllPosts, getPostBySlug } from '@/lib/blog';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import { Container, Box, Typography } from '@mui/material';
+import ClientLayout from '@/components/ClientLayout';
 import BlogImage from '@/components/BlogImage';
+import BlogPostDate from '@/components/BlogPostDate';
+import MDXComponents from '@/components/MDXComponents';
+import { staticRoutes } from '@/config/navigation';
 
 // Activer la génération statique avec revalidation
 export const dynamic = 'force-static';
 export const revalidate = 3600; // Revalider toutes les heures
 
-type Props = {
+interface Props {
   params: {
     category: string;
     slug: string;
   };
-};
-
-// Cache pour stocker les données pré-générées
-let postDataCache: { [key: string]: any } = {};
-
-// Pré-générer les données pour tous les articles
-async function generateAllPostData() {
-  if (Object.keys(postDataCache).length > 0) {
-    return postDataCache;
-  }
-
-  const posts = await getAllPosts();
-  
-  for (const post of posts) {
-    const [category, slug] = post.slug.split('/');
-    const fullPost = await getPostBySlug(post.slug);
-    if (fullPost) {
-      postDataCache[`${category}/${slug}`] = fullPost;
-    }
-  }
-
-  return postDataCache;
 }
 
 // Générer les chemins statiques pour tous les articles
 export async function generateStaticParams() {
-  await generateAllPostData();
-  return Object.keys(postDataCache).map(path => {
-    const [category, slug] = path.split('/');
-    return { category, slug };
-  });
+  const posts = await getAllPosts();
+  return posts.map((post) => ({
+    category: post.category,
+    slug: post.slug,
+  }));
 }
 
+// Fonction pour récupérer l'article
+async function getArticle(paramsPromise: Promise<Props['params']>) {
+  // Attendre la résolution des paramètres dynamiques
+  const params = await paramsPromise;
+
+  // Vérifier si la catégorie est valide
+  const isValidCategory = staticRoutes.categories.some(
+    (cat) => cat.category === params.category
+  );
+
+  if (!isValidCategory) {
+    return null;
+  }
+
+  // Récupérer l'article
+  return await getPostBySlug(`${params.category}/${params.slug}`);
+}
+
+
 export default async function BlogPost({ params }: Props) {
-  const postData = await generateAllPostData();
-  const post = postData[`${params.category}/${params.slug}`];
+  const post = await getArticle(Promise.resolve(params));
 
   if (!post) {
     notFound();
@@ -59,34 +57,49 @@ export default async function BlogPost({ params }: Props) {
   return (
     <ClientLayout>
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        <Typography variant="h3" component="h1" gutterBottom>
-          {post.title}
-        </Typography>
-
-        <Box sx={{ position: 'relative', height: '400px', mb: 4 }}>
-          <BlogImage
-            src={post.image}
-            alt={post.title}
-            fill
-            priority
-            style={{ objectFit: 'cover' }}
-          />
-          <Typography variant="caption" sx={{ mt: 1, display: 'block' }}>
-            {post.imageCopyright}
+        <Box
+          sx={{
+            maxWidth: 800,
+            mx: 'auto',
+            px: { xs: 2, sm: 3 },
+            py: { xs: 3, sm: 4 },
+          }}
+        >
+          {/* 
+          <Typography variant="h3" component="h1" gutterBottom>
+            {post.title}
           </Typography>
-        </Box>
-
-        <Box sx={{ mb: 4 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Typography variant="body2" color="text.secondary">
-              Par {post.author} •
-            </Typography>
-            <BlogPostDate date={post.datePublished} variant="body2" />
+          */}
+          <Box sx={{ position: 'relative', height: '400px', mb: 4 }}>
+            <BlogImage
+              src={post.image}
+              alt={post.title}
+              fill
+              priority
+              style={{ objectFit: 'cover' }}
+            />
+            {post.imageCopyright && (
+              <Typography variant="caption" sx={{ mt: 1, display: 'block' }}>
+                {post.imageCopyright}
+              </Typography>
+            )}
           </Box>
-        </Box>
 
-        <Box className="prose prose-lg max-w-none">
-          <MDXRemote source={post.content} />
+          <Box sx={{ mb: 4 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <Typography variant="body2" color="text.secondary">
+                Par {post.author}
+              </Typography>
+              <BlogPostDate date={post.datePublished} variant="body2" />
+            </Box>
+          </Box>
+
+          <Box className="prose prose-lg max-w-none">
+            <MDXRemote 
+              source={post.content} 
+              components={MDXComponents}
+            />
+          </Box>
         </Box>
       </Container>
     </ClientLayout>

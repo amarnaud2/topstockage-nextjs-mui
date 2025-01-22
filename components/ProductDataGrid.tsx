@@ -8,6 +8,7 @@ import {
 } from '@mui/x-data-grid';
 import { frFR } from '@mui/x-data-grid/locales';
 import { Product } from '@/types/product';
+import { Typography } from '@mui/material';
 
 interface ProductDataGridProps {
   products: Product[];
@@ -83,7 +84,7 @@ export default function ProductDataGrid({ products }: ProductDataGridProps) {
   ];
 
   return (
-    <Box sx={{ width: '100%', height: 600 }}>
+    <Box sx={{ width: '100%', height: 600, mb: 4 }}>
       <ClientSideDataGrid
         rows={rows}
         columns={columns}
@@ -140,6 +141,18 @@ export default function ProductDataGrid({ products }: ProductDataGridProps) {
           ...frFR.components.MuiDataGrid.defaultProps.localeText,
         }}
       />
+      <Typography 
+        variant="caption" 
+        sx={{ 
+          display: 'block',
+          mt: 1,
+          textAlign: 'right',
+          color: 'text.secondary',
+          fontSize: '0.75rem'
+        }}
+      >
+        Données actualisées le 25/01/2025 à 22h30 (Paris)
+      </Typography>
     </Box>
   );
 }

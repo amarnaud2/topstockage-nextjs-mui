@@ -1,92 +1,48 @@
-import { Container, Typography, Box, CircularProgress } from '@mui/material';
-import ClientLayout from '@/components/ClientLayout';
-import { getAllPosts } from '@/lib/blog';
-import { Suspense } from 'react';
-import CategoryPosts from '@/components/CategoryPosts';
 import { notFound } from 'next/navigation';
-
-const titles: { [key: string]: { title: string; subtitle: string } } = {
-  ssd: {
-    title: 'Articles sur les SSD',
-    subtitle: 'Découvrez nos derniers articles sur les SSD',
-  },
-  hdd: {
-    title: 'Articles sur les disques durs',
-    subtitle: 'Découvrez nos derniers articles sur les disques durs',
-  },
-  nas: {
-    title: 'Articles sur les NAS',
-    subtitle: 'Découvrez nos derniers articles sur les NAS',
-  },
-};
+import { Container, Typography } from '@mui/material';
+import Grid2 from '@mui/material/Grid2';
+import { getPostsByCategory } from '@/lib/blog';
+import { categories, staticRoutes } from '@/config/navigation';
+import ClientLayout from '@/components/ClientLayout';
+import BlogPostCard from '@/components/BlogPostCard';
 
 // Activer la génération statique avec revalidation
 export const dynamic = 'force-static';
 export const revalidate = 3600; // Revalider toutes les heures
 
-function LoadingPosts() {
-  return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
-      <CircularProgress />
-    </Box>
-  );
-}
-
-type Props = {
-  params: {
-    category: string;
-  };
-};
-
-type CategoryData = {
-  category: string;
-  posts: any[];
-  title: string;
-  subtitle: string;
-} | null;
-
-// Cache pour stocker les données pré-générées
-let categoryDataCache: { [key: string]: CategoryData } = {};
-
-// Pré-générer les données pour toutes les catégories
-async function generateAllCategoryData() {
-  if (Object.keys(categoryDataCache).length > 0) {
-    return categoryDataCache;
-  }
-
-  const posts = await getAllPosts();
-  const categories = [...new Set(posts.map(post => post.category))];
-
-  categories.forEach(category => {
-    const categoryPosts = posts.filter(post => post.category === category);
-    if (categoryPosts.length > 0) {
-      const categoryInfo = titles[category] || {
-        title: `Articles ${category.toUpperCase()}`,
-        subtitle: `Découvrez nos derniers articles sur ${category.toUpperCase()}`,
-      };
-
-      categoryDataCache[category] = {
-        category,
-        posts: categoryPosts,
-        ...categoryInfo,
-      };
-    } else {
-      categoryDataCache[category] = null;
-    }
-  });
-
-  return categoryDataCache;
+interface Props {
+  params: { category: string };
 }
 
 // Générer les chemins statiques pour toutes les catégories
 export async function generateStaticParams() {
-  await generateAllCategoryData();
-  return Object.keys(categoryDataCache).map(category => ({ category }));
+  return staticRoutes.categories;
 }
 
-export default async function CategoryPage({ params }: Props) {
-  const categoryData = await generateAllCategoryData();
-  const data = categoryData[params.category];
+// Fonction pour obtenir les informations de la catégorie
+async function getCategoryInfo(categorySlug: string) {
+  try {
+    const category = categories.find(cat => cat.slug === categorySlug);
+    if (!category) return null;
+
+    const posts = await getPostsByCategory(categorySlug);
+    if (!posts || !posts.length) return null;
+
+    return {
+      ...category,
+      posts,
+    };
+  } catch (error) {
+    console.error('Error in getCategoryInfo:', error);
+    return null;
+  }
+}
+
+export default async function CategoryPage({ params }: Promise<Props>) {
+  const resolvedParams = await params;
+  const { category } = resolvedParams;
+
+  const data = await getCategoryInfo(category);
 
   if (!data) {
     notFound();
@@ -98,14 +54,20 @@ export default async function CategoryPage({ params }: Props) {
         <Typography variant="h3" component="h1" gutterBottom>
           {data.title}
         </Typography>
-        <Typography variant="subtitle1" gutterBottom sx={{ mb: 4 }}>
+        
+        <Typography variant="subtitle1" sx={{ mb: 4 }}>
           {data.subtitle}
         </Typography>
 
-        <Suspense fallback={<LoadingPosts />}>
-          <CategoryPosts posts={data.posts} />
-        </Suspense>
+        <Grid2 container spacing={{ xs: 2, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }} component="div">
+          {data.posts.map((post) => (
+            <Grid2 key={post.slug} size={{ xs: 4, sm: 4, md: 4 }}>
+              <BlogPostCard post={post} />
+            </Grid2>
+          ))}
+        </Grid2>
       </Container>
     </ClientLayout>
   );
 }
+

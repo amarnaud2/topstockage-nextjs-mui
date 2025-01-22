@@ -1,13 +1,12 @@
 'use client';
 
-import { Box } from '@mui/material';
-import { Typography } from '@mui/material';
-import { BlogPost } from '@/lib/blog';
+import { Grid } from '@mui/material';
 import BlogPostCard from './BlogPostCard';
+import { BlogPost } from '@/lib/blog';
 
-type CategoryPostsProps = {
+interface CategoryPostsProps {
   posts: BlogPost[];
-};
+}
 
 export default function CategoryPosts({ posts }: CategoryPostsProps) {
   if (posts.length === 0) {
@@ -19,22 +18,22 @@ export default function CategoryPosts({ posts }: CategoryPostsProps) {
   }
 
   return (
-    <Box 
-      sx={{ 
-        display: 'grid',
-        gridTemplateColumns: {
-          xs: '1fr',
-          md: '1fr 1fr'
-        },
-        gap: 3,
-        width: '100%'
-      }}
-    >
-      {posts.map((post: BlogPost) => (
-        <Box key={post.slug}>
-          <BlogPostCard post={post} />
-        </Box>
+    <Grid container spacing={4}>
+      {posts.map((post) => (
+        <Grid item key={post.slug} xs={12} sm={6} md={4}>
+          <BlogPostCard 
+            post={{
+              title: post.title,
+              description: post.description,
+              image: post.image,
+              slug: post.slug.split('/')[1],
+              category: post.category,
+              datePublished: post.datePublished,
+              author: post.author,
+            }} 
+          />
+        </Grid>
       ))}
-    </Box>
+    </Grid>
   );
 }
