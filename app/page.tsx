@@ -26,25 +26,27 @@ export default function Home() {
 
   return (
     <ClientLayout>
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h1" component="h1" gutterBottom>
-          Bienvenue sur Top Stockage
-        </Typography>
-        <Typography variant="h2" gutterBottom>
-          Votre guide pour choisir le meilleur stockage
-        </Typography>
-        <Typography variant="body1" paragraph>
-          Découvrez notre sélection des meilleurs SSD et disques durs, avec des comparatifs détaillés et des conseils d'experts.
-        </Typography>
-        {products.length > 0 && (
-          <Box sx={{ mt: 4 }}>
-            <Typography variant="h3" gutterBottom>
-              Nos dernières recommandations
-            </Typography>
-            <ProductDataGrid products={products} />
-          </Box>
-        )}
-      </Box>
+      <Container maxWidth="lg">
+        <Box sx={{ my: 4 }}>
+          <Typography variant="h1" component="h1" gutterBottom>
+            Bienvenue sur Top Stockage
+          </Typography>
+          <Typography variant="h2" gutterBottom>
+            Votre guide pour choisir le meilleur stockage
+          </Typography>
+          <Typography variant="body1" paragraph>
+            Découvrez notre sélection des meilleurs SSD et disques durs, avec des comparatifs détaillés et des conseils d'experts.
+          </Typography>
+          {products.length > 0 && (
+            <Box sx={{ mt: 4 }}>
+              <Typography variant="h3" gutterBottom>
+                Nos dernières recommandations
+              </Typography>
+              <ProductDataGrid products={products} />
+            </Box>
+          )}
+        </Box>
+      </Container>
     </ClientLayout>
   );
 }

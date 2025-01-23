@@ -29,7 +29,15 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="static" sx={{ mb: 2, bgcolor: 'primary.main' }}>
+    <AppBar 
+      position="sticky" 
+      sx={{ 
+        mb: 2, 
+        bgcolor: 'primary.main', 
+        top: 0, 
+        zIndex: 1300 
+      }}
+    >
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           {/* Logo pour desktop */}
