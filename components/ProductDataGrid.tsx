@@ -151,7 +151,7 @@ export default function ProductDataGrid({ products }: ProductDataGridProps) {
           fontSize: '0.75rem'
         }}
       >
-        Données actualisées le 25/01/2025 à 22h30 (Paris)
+        Données actualisées le {process.env.NEXT_PUBLIC_DATA_UPDATE}.
       </Typography>
     </Box>
   );

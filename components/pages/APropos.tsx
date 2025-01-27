@@ -59,7 +59,7 @@ export default function AProposContent() {
                   Contact
                 </Typography>
                 <Typography variant="body2">
-                  Email: contact@topstockage.fr
+                  Email: <a href={`mailto:${process.env.NEXT_PUBLIC_COMPANY_EMAIL}`} className="text-blue-600 underline">{process.env.NEXT_PUBLIC_COMPANY_EMAIL}</a>
                 </Typography>
               </Box>
             </Grid2>

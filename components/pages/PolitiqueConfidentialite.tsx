@@ -27,9 +27,9 @@ export default function PolitiqueConfidentialiteContent() {
             Le site <strong>topstockage.fr</strong> est édité par :
           </Typography>
           <List>
-            <ListItem><strong>Nom ou Raison sociale : &nbsp;</strong>Digital-Advantage.com</ListItem>
-            <ListItem><strong>Adresse : &nbsp;</strong>26 RUE DAGORNO 75012 PARIS</ListItem>
-            <ListItem><strong>Email : &nbsp;</strong><a href="mailto:digital-advantage@outlook.com" className="text-blue-600 underline">digital-advantage@outlook.com</a></ListItem>
+            <ListItem><strong>Nom ou Raison sociale : &nbsp;</strong>{process.env.NEXT_PUBLIC_COMPANY_NAME}</ListItem>
+            <ListItem><strong>Adresse : &nbsp;</strong>{process.env.NEXT_PUBLIC_COMPANY_ADDRESS}</ListItem>
+            <ListItem><strong>Email : &nbsp;</strong><a href={`mailto:${process.env.NEXT_PUBLIC_COMPANY_EMAIL}`} className="text-blue-600 underline">{process.env.NEXT_PUBLIC_COMPANY_EMAIL}</a></ListItem>
           </List>
           <Typography variant="body1" ></Typography>
 
@@ -53,7 +53,7 @@ export default function PolitiqueConfidentialiteContent() {
             Nous collectons les données suivantes dans le cadre de l’utilisation de notre site :
           </Typography>
           <List>
-            <ListItem><strong>Données de navigation : &nbsp;</strong> Adresse IP, type de navigateur, pages visitées et durée des sessions. Ces données sont collectées via Google Analytics.</ListItem>
+            <ListItem><strong>Données de navigation : &nbsp;</strong> Pages visitées, Référents (sites depuis lesquels les visiteurs arrivent), Appareils et navigateurs utilisés, Pays d'origine (géolocalisation approximative sans stockage d'IP), Durée des sessions. Ces données sont collectées via Umami.</ListItem>
             <ListItem><strong>Données de la newsletter : &nbsp;</strong> Adresse e-mail lors de votre inscription volontaire.</ListItem>
             <ListItem><strong>Données liées aux liens d’affiliation : &nbsp;</strong> Lorsque vous cliquez sur un lien Amazon Affiliates, des informations sur votre navigation sont partagées avec Amazon pour le suivi des ventes.</ListItem>
           </List>
@@ -62,7 +62,7 @@ export default function PolitiqueConfidentialiteContent() {
             Les données collectées sont utilisées pour les finalités suivantes :
           </Typography>
           <List>
-            <ListItem>Améliorer l’expérience utilisateur sur notre site grâce à l’analyse des comportements via Google Analytics.</ListItem>
+            <ListItem>Les données collectées sont utilisées uniquement pour analyser le trafic du site et améliorer l'expérience utilisateur.</ListItem>
             <ListItem>Envoyer des newsletters contenant des conseils, des articles, ou des offres spéciales.</ListItem>
             <ListItem>Suivre l’efficacité des liens d’affiliation et calculer les commissions générées par Amazon Affiliates.</ListItem>
           </List>
@@ -71,7 +71,8 @@ export default function PolitiqueConfidentialiteContent() {
             Base légale du traitement
           </Typography>
           <List>
-            <ListItem><strong>Consentement :</strong> Pour l’inscription à la newsletter et l’analyse des données via Google Analytics.</ListItem>
+            <ListItem>L'utilisation de Umami repose sur notre intérêt légitime à comprendre l'utilisation du site, conformément à l'article 6(1)(f) du RGPD.</ListItem>
+            <ListItem><strong>Consentement :</strong> Pour l’inscription à la newsletter (pas encore en place).</ListItem>
             <ListItem><strong>Intérêt légitime : &nbsp;</strong> Pour l’utilisation des liens d’affiliation Amazon.</ListItem>
           </List>
 
@@ -79,7 +80,7 @@ export default function PolitiqueConfidentialiteContent() {
             Durée de conservation des données
           </Typography>
           <List>
-            <ListItem><strong>Données de navigation : &nbsp;</strong> Jusqu’a 14 mois (durée configurée dans Google Analytics).</ListItem>
+            <ListItem><strong>Données de navigation : &nbsp;</strong> Jusqu’a 6 mois (durée configurée dans Umami).</ListItem>
             <ListItem><strong>Données de la newsletter : &nbsp;</strong> Jusqu’a ce que vous décidiez de vous désabonner.</ListItem>
           </List>
 
@@ -90,7 +91,7 @@ export default function PolitiqueConfidentialiteContent() {
             Vos données peuvent être partagées avec les tiers suivants :
           </Typography>
           <List>
-            <ListItem><strong>Google Analytics : &nbsp;</strong> Pour analyser les données de navigation.</ListItem>
+            <ListItem><strong>Umami : &nbsp;</strong> Pour analyser les données de navigation.</ListItem>
             <ListItem><strong>Amazon Affiliates : &nbsp;</strong> Pour suivre les achats effectués via les liens affiliés.</ListItem>
           </List>
 
@@ -109,14 +110,21 @@ export default function PolitiqueConfidentialiteContent() {
           </List>
 
           <Typography variant="body1" gutterBottom>
-            Pour exercer vos droits, contactez-nous à <a href="mailto:digital-advantage@outlook.com" className="text-blue-600 underline">contact@topstockage.fr</a>.
+            Pour exercer vos droits, contactez-nous à <a href={`mailto:${process.env.NEXT_PUBLIC_COMPANY_EMAIL}`} className="text-blue-600 underline">{process.env.NEXT_PUBLIC_COMPANY_EMAIL}</a>.
           </Typography>
 
           <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
             Cookies
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Le site utilise des cookies pour améliorer votre expérience. Vous pouvez gérer vos préférences via les paramètres de votre navigateur.
+            Umami ne repose pas sur l'utilisation de cookies et ne suit pas les utilisateurs sur d'autres sites web.
+          </Typography>
+
+          <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
+            Notre engagement
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            Nous préférons collecter uniquement les données nécessaires à notre travail et en respectant votre vie privée. Moins de données stockées, c'est aussi moins de consommation d'espace disque, moins d'énergie consommée, ce qui est un pas vers un environnement plus respectueux. 
           </Typography>
 
           <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
@@ -126,7 +134,7 @@ export default function PolitiqueConfidentialiteContent() {
             Cette politique de confidentialité peut être mise à jour à tout moment. La date de la dernière mise à jour est indiquée ci-dessous.
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Dernière mise à jour : Lundi 20 janvier 2025
+            Dernière mise à jour : {process.env.NEXT_PUBLIC_PRIVACY_POLICY_UPDATE}
           </Typography>
         </Container>
       </Box>

@@ -27,12 +27,12 @@ export default function MentionsLegalesContent() {
             Le site <strong>topstockage.fr</strong> est édité par : 
           </Typography>
           <List>
-            <ListItem><strong>Nom ou Raison sociale : &nbsp;</strong><a href="https://www.digital-advantage.com" className="text-blue-600 underline">Digital-Advantage.com</a></ListItem>
-            <ListItem><strong>Adresse : &nbsp;</strong>26 RUE DAGORNO 75 012 PARIS</ListItem>
-            <ListItem><strong>Email : &nbsp;</strong> <a href="mailto:digital-advantage@outlook.com" className="text-blue-600 underline">digital-advantage@outlook.com</a></ListItem>
-            <ListItem><strong>Téléphone : &nbsp;</strong>(+33) 6 72 06 45 19</ListItem>
-            <ListItem><strong>Numéro SIRET : &nbsp;</strong>898 150 438 00023</ListItem>
-            <ListItem><strong>Directeur de la publication : &nbsp;</strong>Arnaud</ListItem>
+            <ListItem><strong>Nom ou Raison sociale : &nbsp;</strong><a href="https://www.digital-advantage.com" className="text-blue-600 underline">{process.env.NEXT_PUBLIC_COMPANY_NAME}</a></ListItem>
+            <ListItem><strong>Adresse : &nbsp;</strong>{process.env.NEXT_PUBLIC_COMPANY_POSTAL_ADDRESS}</ListItem>
+            <ListItem><strong>Email : &nbsp;</strong> <a href={`mailto:${process.env.NEXT_PUBLIC_COMPANY_EMAIL}`} className="text-blue-600 underline">{process.env.NEXT_PUBLIC_COMPANY_EMAIL}</a></ListItem>
+            <ListItem><strong>Téléphone : &nbsp;</strong>{process.env.NEXT_PUBLIC_COMPANY_PHONE}</ListItem>
+            <ListItem><strong>Numéro SIRET : &nbsp;</strong>{process.env.NEXT_PUBLIC_COMPANY_SIRET}</ListItem>
+            <ListItem><strong>Directeur de la publication : &nbsp;</strong>{process.env.NEXT_PUBLIC_COMPANY_OWNER}</ListItem>
           </List>
 
           <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
@@ -42,10 +42,9 @@ export default function MentionsLegalesContent() {
             Le site <strong>topstockage.fr</strong> est hébergé par :
           </Typography>
           <List>
-            <ListItem><strong>Nom de l’hébergeur : &nbsp;</strong>Alwaysdata</ListItem>
-            <ListItem><strong>Adresse : &nbsp;</strong>91 Rue du Faubourg Saint-Honoré, 75008 Paris</ListItem>
-            <ListItem><strong>Téléphone : &nbsp;</strong>(+33) 1 84 16 23 40</ListItem>
-            <ListItem><strong>Site web : &nbsp;</strong> <a href="https://www.alwaysdata.com/fr/" className="text-blue-600 underline">Alwaysdata</a></ListItem>
+            <ListItem><strong>Nom de l’hébergeur : &nbsp;</strong>{process.env.NEXT_PUBLIC_HOSTING_NAME}</ListItem>
+            <ListItem><strong>E-Mail : &nbsp;</strong><a href={`mailto:${process.env.NEXT_PUBLIC_HOSTING_EMAIL}`} className="text-blue-600 underline">{process.env.NEXT_PUBLIC_HOSTING_EMAIL}</a></ListItem>
+            <ListItem><strong>Site web : &nbsp;</strong> <a href={`${process.env.NEXT_PUBLIC_HOSTING_URL}`} className="text-blue-600 underline">{process.env.NEXT_PUBLIC_HOSTING_URL}</a></ListItem>
           </List>
 
           <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
@@ -62,7 +61,7 @@ export default function MentionsLegalesContent() {
             Liens hypertextes
           </Typography>
           <Typography variant="body1" gutterBottom>
-          Le site <strong>topstockage.fr</strong> peut contenir des liens hypertextes vers d'autres sites. Cependant, Digital-Advantage.com n'assume aucune responsabilité quant au contenu de ces sites externes qui restent sous la seule responsabilité de leurs propriétaires respectifs.
+            Le site <strong>topstockage.fr</strong> peut contenir des liens hypertextes vers d'autres sites. Cependant, Digital-Advantage.com n'assume aucune responsabilité quant au contenu de ces sites externes qui restent sous la seule responsabilité de leurs propriétaires respectifs.
           </Typography>
 
           <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
@@ -76,21 +75,21 @@ export default function MentionsLegalesContent() {
             Données personnelles
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Les informations recueillies sur le site <strong>topstockage.fr</strong> sont utilisées exclusivement dans le cadre légal prévu en France pour le respect de la vie privée. Conformément à la loi "Informatique et Libertés", vous disposez d’un droit d’accès, de rectification et de suppression des données vous concernant. Pour exercer ce droit, vous pouvez contacter Digital-Advantage.com à l’adresse suivante : <a href="mailto:digital-advantage@outlook.com" className="text-blue-600 underline">digital-advantage@outlook.com</a>.
+            Les informations recueillies sur le site <strong>topstockage.fr</strong> sont utilisées exclusivement dans le cadre légal prévu en France pour le respect de la vie privée. Conformément à la loi "Informatique et Libertés", vous disposez d’un droit d’accès, de rectification et de suppression des données vous concernant. Pour exercer ce droit, vous pouvez contacter Digital-Advantage.com à l’adresse suivante : <a href={`mailto:${process.env.NEXT_PUBLIC_COMPANY_EMAIL}`} className="text-blue-600 underline">{process.env.NEXT_PUBLIC_COMPANY_EMAIL}</a>.
           </Typography>
 
           <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
             Cookies
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Le site <strong>topstockage.fr</strong> peut être amené à vous demander l’acceptation des cookies pour des besoins de statistiques et d’affichage. Un cookie est une information déposée sur votre disque dur par le serveur du site que vous visitez. Les cookies sont utilisés principalement pour améliorer l'experience utilisateur enregistrant des informations relatives à votre visite.
+            Le site <strong>topstockage.fr</strong> est favorable à une navigation sans cookie et n'utilise pas de cookie. Nous ne sommes pas responsables des cookies déposés par nos partenaires. 
           </Typography>
 
           <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
             Contact
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Pour toute question ou information concernant le site <strong>topstockage.fr</strong>, vous pouvez nous contacter par email à l’adresse suivante : <a href="mailto:digital-advantage@outlook.com" className="text-blue-600 underline">digital-advantage@outlook.com</a>..
+            Pour toute question ou information concernant le site <strong>topstockage.fr</strong>, vous pouvez nous contacter par email à l’adresse suivante : <a href={`mailto:${process.env.NEXT_PUBLIC_COMPANY_EMAIL}`} className="text-blue-600 underline">{process.env.NEXT_PUBLIC_COMPANY_EMAIL}</a>.
           </Typography>
          
         </Container>
