@@ -41,7 +41,7 @@ const STATIC_ROUTES = {
 // Navigation principale
 const MAIN_NAVIGATION = CATEGORIES.map(({ title, path, description }) => ({
   title,
-  path,
+  href: path,  // Renommé 'path' en 'href' pour correspondre à l'attente du composant Link
   description,
 }));
 

@@ -1,24 +1,28 @@
-'use client';
-
-import * as React from 'react';
+import { useState } from 'react';
 import {
   AppBar,
   Box,
-  Toolbar,
-  IconButton,
-  Typography,
-  Menu,
-  Container,
   Button,
+  Container,
+  IconButton,
+  Menu,
   MenuItem,
+  Toolbar,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
+import { visuallyHidden } from '@mui/utils';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { mainNavigation } from '@/config/navigation';
 
 export default function Header() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const pathname = usePathname();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -32,34 +36,42 @@ export default function Header() {
     <AppBar 
       position="sticky" 
       sx={{ 
-        mb: 2, 
-        bgcolor: 'primary.main', 
-        top: 0, 
-        zIndex: 1300 
+        backgroundColor: 'primary.main',
+        top: 0,
+        zIndex: theme.zIndex.appBar
       }}
+      component="header"
+      role="banner"
     >
       <Container maxWidth="lg">
-        <Toolbar disableGutters>
-          {/* Logo pour desktop */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 2 }}>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-              <Image
-                src="/logo.png"
-                alt="Top Stockage"
-                width={200}
-                height={60}
-                style={{ objectFit: 'contain' }}
-                priority
-              />
-            </Link>
-          </Box>
+        <Toolbar 
+          disableGutters 
+          sx={{ justifyContent: 'space-between' }}
+          component="nav"
+          aria-label="Navigation principale"
+        >
+          {/* Logo */}
+          <Link 
+            href="/" 
+            style={{ display: 'flex', alignItems: 'center' }}
+            aria-label="Retour à l'accueil"
+          >
+            <Image
+              src="/logo.png"
+              alt="Logo Top Stockage"
+              width={isMobile ? 150 : 200}
+              height={isMobile ? 45 : 60}
+              priority
+            />
+          </Link>
 
           {/* Menu mobile */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
-              aria-label="menu"
-              aria-controls="menu-appbar"
+              aria-label="Ouvrir le menu"
+              aria-controls={Boolean(anchorElNav) ? 'menu-appbar' : undefined}
+              aria-expanded={Boolean(anchorElNav)}
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               sx={{ color: 'white' }}
@@ -83,53 +95,69 @@ export default function Header() {
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
+              role="menu"
+              aria-label="Menu de navigation"
             >
               {mainNavigation.map((item) => (
                 <Link
                   key={item.title}
-                  href={item.path}
+                  href={item.href}
                   style={{ textDecoration: 'none', color: 'inherit' }}
                   onClick={handleCloseNavMenu}
                 >
-                  <MenuItem>
-                    <Typography textAlign="center">{item.title}</Typography>
+                  <MenuItem
+                    selected={pathname === item.href}
+                    role="menuitem"
+                    aria-current={pathname === item.href ? 'page' : undefined}
+                  >
+                    {item.title}
                   </MenuItem>
                 </Link>
               ))}
             </Menu>
           </Box>
 
-          {/* Logo pour mobile */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' }, flexGrow: 1, justifyContent: 'center' }}>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-              <Image
-                src="/logo.png"
-                alt="Top Stockage"
-                width={150}
-                height={45}
-                style={{ objectFit: 'contain' }}
-                priority
-              />
-            </Link>
-          </Box>
-
           {/* Menu desktop */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
+          <Box 
+            sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}
+            role="menubar"
+            aria-label="Menu de navigation"
+          >
             {mainNavigation.map((item) => (
               <Link
                 key={item.title}
-                href={item.path}
+                href={item.href}
                 style={{ textDecoration: 'none' }}
+                aria-current={pathname === item.href ? 'page' : undefined}
               >
                 <Button
-                  onClick={handleCloseNavMenu}
-                  sx={{ 
+                  role="menuitem"
+                  sx={{
                     color: 'white',
                     display: 'block',
-                    mx: 1,
+                    position: 'relative',
                     '&:hover': {
-                      backgroundColor: 'primary.dark',
-                    }
+                      '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '2px',
+                        backgroundColor: 'white',
+                      },
+                    },
+                    ...(pathname === item.href && {
+                      '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        bottom: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '2px',
+                        backgroundColor: 'white',
+                      },
+                    }),
                   }}
                 >
                   {item.title}

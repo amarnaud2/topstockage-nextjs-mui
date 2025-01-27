@@ -10,14 +10,17 @@ const FOOTER_LINKS = [
   {
     title: 'Politique de confidentialité',
     href: '/politique-de-confidentialite',
+    ariaLabel: 'Lire la politique de confidentialité',
   },
   {
     title: 'Mentions légales',
     href: '/mentions-legales',
+    ariaLabel: 'Lire les mentions légales',
   },
   {
     title: 'À propos',
     href: '/a-propos',
+    ariaLabel: 'En savoir plus sur Top Stockage',
   },
 ];
 
@@ -38,6 +41,7 @@ export default function Footer() {
   return (
     <Box
       component="footer"
+      role="contentinfo"
       sx={{
         backgroundColor: 'primary.main',
         color: 'white',
@@ -51,24 +55,32 @@ export default function Footer() {
             <Typography variant="h6" gutterBottom>
               Top Stockage
             </Typography>
-            <Box sx={{ display: 'flex', gap: 3 }}>
+            <Box
+              component="nav"
+              aria-label="Navigation du pied de page"
+              sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                gap: 2,
+                mb: 2,
+              }}
+            >
               {FOOTER_LINKS.map((link) => (
                 <Link
                   key={link.title}
                   href={link.href}
-                  style={{ textDecoration: 'none' }}
+                  passHref
+                  legacyBehavior
                 >
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      color: 'white',
-                      '&:hover': {
-                        color: 'primary.light',
-                      },
-                    }}
+                  <MuiLink
+                    underline="hover"
+                    color="inherit"
+                    aria-label={link.ariaLabel || link.title}
+                    sx={{ textDecoration: 'none' }}
                   >
                     {link.title}
-                  </Typography>
+                  </MuiLink>
                 </Link>
               ))}
             </Box>
@@ -92,7 +104,7 @@ export default function Footer() {
                       display: 'flex',
                       alignItems: 'center',
                       '&:hover': {
-                        color: 'primary.light',
+                        textDecoration: 'underline',
                       },
                     }}
                   >
@@ -105,27 +117,39 @@ export default function Footer() {
         </Grid2>
 
         <Typography 
-          variant="caption" 
+          variant="body2" 
+          color="inherit"
+          align="center"
           sx={{ 
-            display: 'block', 
-            mt: 4, 
-            textAlign: 'justify',
             opacity: 0.8,
-            fontSize: '0.7rem'
+            mt: 4,
           }}
         >
-          Top Stockage participe au programme d'affiliation Amazon. Les liens d'achat présents sur ce site peuvent générer une commission pour nous, sans coût supplémentaire pour vous. Les prix et la disponibilité des produits sont exacts à la date et à l'heure indiquées et sont susceptibles de changer. Toute information sur les prix et la disponibilité affichée au moment de l'achat s'appliquera à l'achat du produit. CERTAINS CONTENUS QUI APPARAISSENT SUR CE SITE PROVIENNENT DES SERVICES D'AMAZON LLC. CES CONTENUS SONT FOURNIS "EN L'ÉTAT" ET PEUVENT ÊTRE MODIFIÉS OU SUPPRIMÉS À TOUT MOMENT.
+          <Box
+            component="span"
+            role="note"
+            aria-label="Information sur les liens d'affiliation"
+          >
+            Top Stockage participe au programme d'affiliation Amazon. Les liens d'achat présents sur ce site peuvent générer une commission pour nous, sans coût supplémentaire pour vous. Les prix et la disponibilité des produits sont exacts à la date et à l'heure indiquées et sont susceptibles de changer. Toute information sur les prix et la disponibilité affichée au moment de l'achat s'appliquera à l'achat du produit. CERTAINS CONTENUS QUI APPARAISSENT SUR CE SITE PROVIENNENT DES SERVICES D'AMAZON LLC. CES CONTENUS SONT FOURNIS "EN L'ÉTAT" ET PEUVENT ÊTRE MODIFIÉS OU SUPPRIMÉS À TOUT MOMENT.
+          </Box>
         </Typography>
 
         <Typography 
           variant="body2" 
+          color="inherit"
+          align="center"
           sx={{ 
             mt: 2, 
-            textAlign: 'center', 
-            color: 'white',
+            opacity: 0.8,
           }}
         >
-          {new Date().getFullYear()} Top Stockage. Tous droits réservés.
+          <Box
+            component="span"
+            role="contentinfo"
+            aria-label="Informations de copyright"
+          >
+            {new Date().getFullYear()} Top Stockage. Tous droits réservés.
+          </Box>
         </Typography>
       </Container>
     </Box>
