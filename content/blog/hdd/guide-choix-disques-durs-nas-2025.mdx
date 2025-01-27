@@ -1,5 +1,5 @@
 ---
-title: "Comment choisir les disques durs parfaits pour votre NAS en 2025"
+title: "Comment choisir les disques durs pour votre NAS en 2025"
 slug: "guide-choix-disques-durs-nas-2025"
 description: "Guide expert pour choisir les disques durs adaptés à votre NAS : analyse des performances, compromis et limitations à prendre en compte pour optimiser votre investissement."
 datePublished: "2025-01-21"
@@ -14,189 +14,325 @@ keywords:
   - performance
   - WD Red
   - Seagate IronWolf
-image: "/images/nas-hdd-guide.jpg"
-imageCopyright: "Photo de Tima Miroshnichenko: https://www.pexels.com/fr-fr/photo/noir-et-blanc-technologie-ordinateur-portable-donnees-6694974/"
+image: "/images/blog/hdd/nas-hdd-guide.webp"
+imageCopyright: "Photo de Azamat Esenaliev: https://www.pexels.com/fr-fr/photo/disque-dur-interne-noir-sur-surface-noire-117729/"
 canonical: "https://www.topstockage.fr/blog/hdd/guide-choix-disques-durs-nas-2025"
 ---
 
-# Comment choisir les disques durs parfaits pour votre NAS en 2025
+# Comment choisir les disques durs pour votre NAS en 2025
 
 Le choix des disques durs est crucial pour les performances et la fiabilité de votre NAS. Découvrez comment optimiser votre choix en fonction de vos besoins réels et des limitations techniques.
 
 ## Les facteurs clés de décision
 
 ### 1. Limitations physiques
-- **Vitesse réseau**
-  - 1 Gbps = ~120 Mo/s max
-  - 2.5 Gbps = ~300 Mo/s max
-  - 10 Gbps = ~1200 Mo/s max
 
-- **Capacité du NAS**
-  - Nombre de baies
-  - Type de RAID
-  - Refroidissement disponible
+La vitesse d'un réseau est généralement exprimée en gigabits par seconde (Gbps), mais en pratique, le débit réel en mégaoctets par seconde (Mo/s) est approximativement de 120 Mo/s pour une connexion de 1 Gbps, 300 Mo/s pour 2,5 Gbps et 1200 Mo/s pour 10 Gbps, en tenant compte des protocoles de communication et des pertes éventuelles.
+
+La capacité d'un NAS dépend du **nombre de baies**, qui détermine le nombre de disques pouvant être installés, du **type de RAID** pris en charge, influençant la redondance et les performances des données, ainsi que du **système de refroidissement disponible**, essentiel pour assurer la durabilité et la stabilité des disques en évitant la surchauffe.
+
+Un disque dur tournant à 7200 tr/min offre une vitesse de transfert théorique comprise entre 200 et 270 Mo/s, mais en usage réel, les performances se situent généralement entre 150 et 180 Mo/s, et lorsqu'il est configuré en RAID 5, le débit par disque est légèrement réduit, atteignant environ 140 à 160 Mo/s en raison des calculs de parité nécessaires.
 
 ### 2. Compromis à considérer
-- Performance vs Prix
-- Capacité vs Fiabilité
-- Bruit vs Vitesse
-- Consommation vs Performance
+Le choix d'un NAS implique de trouver le bon compromis entre **performance et prix**, en équilibrant les besoins en rapidité et le budget disponible, **capacité et fiabilité**, en tenant compte de la redondance des données, **bruit et vitesse**, pour un fonctionnement silencieux sans compromettre les performances, ainsi que **consommation et performance**, afin d'optimiser l'efficacité énergétique sans sacrifier la puissance du système.
+
+## Les différents types de RAID
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Principe</th>
+      <th>Points forts</th>
+      <th>Points faibles</th>
+      <th>Usage recommandé</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>RAID 0</td>
+      <td>Répartition des données sur plusieurs disques sans redondance</td>
+      <td>Performances élevées en lecture/écriture</td>
+      <td>Aucune tolérance aux pannes</td>
+      <td>Montage vidéo, jeux</td>
+    </tr>
+    <tr>
+      <td>RAID 1</td>
+      <td>Duplication des données sur deux disques</td>
+      <td>Haute tolérance aux pannes, récupération rapide</td>
+      <td>Capacité divisée par deux</td>
+      <td>Données critiques</td>
+    </tr>
+    <tr>
+      <td>RAID 5</td>
+      <td>Données et parité réparties sur min. 3 disques</td>
+      <td>Bon équilibre performances/sécurité</td>
+      <td>Reconstruction lente, écriture ralentie</td>
+      <td>Serveurs de fichiers, BDD</td>
+    </tr>
+    <tr>
+      <td>RAID 6</td>
+      <td>Double parité sur min. 4 disques</td>
+      <td>Sécurité accrue, tolérance 2 pannes</td>
+      <td>Performances d'écriture réduites</td>
+      <td>Haute disponibilité</td>
+    </tr>
+    <tr>
+      <td>RAID 10</td>
+      <td>Combinaison miroir et répartition</td>
+      <td>Excellentes performances et sécurité</td>
+      <td>Coût élevé, capacité /2</td>
+      <td>BDD critiques</td>
+    </tr>
+    <tr>
+      <td>RAID 50</td>
+      <td>RAID 5 + répartition</td>
+      <td>Haute capacité, bonne tolérance</td>
+      <td>Min. 6 disques, coût élevé</td>
+      <td>Serveurs d'entreprise</td>
+    </tr>
+    <tr>
+      <td>RAID 60</td>
+      <td>RAID 6 + répartition</td>
+      <td>Sécurité maximale, bonnes performances</td>
+      <td>Très coûteux, complexe</td>
+      <td>Infrastructure critique</td>
+    </tr>
+    <tr>
+      <td>JBOD</td>
+      <td>Simple regroupement de disques</td>
+      <td>Capacité totale maximale</td>
+      <td>Aucune protection</td>
+      <td>Archivage temporaire</td>
+    </tr>
+  </tbody>
+</table>
+
+## Comparatif des configurations RAID
+
+<table>
+  <thead>
+    <tr>
+      <th>Type RAID</th>
+      <th>Performance</th>
+      <th>Capacité utilisable</th>
+      <th>Nombre de disques</th>
+      <th>Recommandations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>RAID 0</td>
+      <td>Performances additionnées</td>
+      <td>100% (N disques)</td>
+      <td>Minimum 2</td>
+      <td>Disques rapides recommandés</td>
+    </tr>
+    <tr>
+      <td>RAID 1</td>
+      <td>Performance d'un seul disque</td>
+      <td>50% (N/2 disques)</td>
+      <td>Minimum 2</td>
+      <td>Disques identiques conseillés</td>
+    </tr>
+    <tr>
+      <td>RAID 5</td>
+      <td>Performance N-1 disques</td>
+      <td>67-94% ((N-1)/N)</td>
+      <td>Minimum 3</td>
+      <td>1 disque de parité</td>
+    </tr>
+    <tr>
+      <td>RAID 6</td>
+      <td>Performance N-2 disques</td>
+      <td>50-88% ((N-2)/N)</td>
+      <td>Minimum 4</td>
+      <td>2 disques de parité</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Analyse des performances réelles
 
-### Vitesses théoriques vs pratiques
+<table>
+  <thead>
+    <tr>
+      <th>Type de connexion</th>
+      <th>Débit théorique</th>
+      <th>Débit réel</th>
+      <th>Facteurs limitants</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Réseau 1 Gbps</td>
+      <td>125 Mo/s</td>
+      <td>110-120 Mo/s</td>
+      <td>Protocoles réseau, latence</td>
+    </tr>
+    <tr>
+      <td>Réseau 2.5 Gbps</td>
+      <td>312.5 Mo/s</td>
+      <td>280-300 Mo/s</td>
+      <td>Vitesse des disques, RAID</td>
+    </tr>
+    <tr>
+      <td>Réseau 10 Gbps</td>
+      <td>1250 Mo/s</td>
+      <td>800-1200 Mo/s</td>
+      <td>Configuration RAID, CPU</td>
+    </tr>
+    <tr>
+      <td>Disque 7200 tr/min</td>
+      <td>200-270 Mo/s</td>
+      <td>150-180 Mo/s</td>
+      <td>Fragmentation, taille fichiers</td>
+    </tr>
+    <tr>
+      <td>RAID 5 (4 disques)</td>
+      <td>600-800 Mo/s</td>
+      <td>450-550 Mo/s</td>
+      <td>Calculs de parité, reconstruction</td>
+    </tr>
+  </tbody>
+</table>
 
-#### Disque dur 7200 tr/min
-- **Théorique** : 200-270 Mo/s
-- **Pratique** : 150-180 Mo/s
-- **En RAID 5** : 140-160 Mo/s par disque
-
-#### Impact du réseau
-1. **Réseau 1 Gbps**
-   - Limite à 120 Mo/s
-   - Un seul disque suffit
-   - RAID pour redondance uniquement
-
-2. **Réseau 2.5 Gbps**
-   - Limite à 300 Mo/s
-   - 2-3 disques en RAID 0
-   - RAID 5 recommandé
-
-3. **Réseau 10 Gbps**
-   - Jusqu'à 1200 Mo/s
-   - 6+ disques nécessaires
-   - RAID 6 conseillé
+Ces performances sont données à titre indicatif et peuvent varier selon de nombreux facteurs : qualité du matériel, configuration système, type de fichiers manipulés et charge du système.
 
 ## Comparatif des gammes NAS
 
-### WD Red Plus (5400 tr/min)
-- Prix : 20-22€/To
-- Performance : 180 Mo/s
-- Avantages :
-  - Silencieux
-  - Économique
-  - Faible consommation
-- Idéal pour :
-  - NAS 1-8 baies
-  - Réseau 1 Gbps
-  - Usage familial
-
-[Voir les WD Red Plus sur Amazon](#)
-
-### Seagate IronWolf (5900 tr/min)
-- Prix : 21-23€/To
-- Performance : 190 Mo/s
-- Avantages :
-  - Bon compromis
-  - AgileArray optimisé
-  - Garantie 3 ans
-- Idéal pour :
-  - NAS 1-8 baies
-  - Réseau 1-2.5 Gbps
-  - Usage mixte
-
-[Voir les Seagate IronWolf sur Amazon](#)
-
-### WD Red Pro (7200 tr/min)
-- Prix : 25-27€/To
-- Performance : 250 Mo/s
-- Avantages :
-  - Hautes performances
-  - Garantie 5 ans
-  - Fiabilité supérieure
-- Idéal pour :
-  - NAS 8-24 baies
-  - Réseau 2.5-10 Gbps
-  - Usage professionnel
-
-[Voir les WD Red Pro sur Amazon](#)
-
-### Seagate IronWolf Pro (7200 tr/min)
-- Prix : 26-28€/To
-- Performance : 250 Mo/s
-- Avantages :
-  - Performances maximales
-  - Service récupération
-  - Garantie 5 ans
-- Idéal pour :
-  - NAS 8-24 baies
-  - Réseau 2.5-10 Gbps
-  - Usage intensif
-
-[Voir les Seagate IronWolf Pro sur Amazon](#)
-
-## Impact du RAID sur le choix
-
-### RAID 0 (Performance)
-- Performances additionnées
-- Aucune redondance
-- Disques rapides recommandés
-
-### RAID 1 (Mirror)
-- Performance d'un seul disque
-- 50% capacité perdue
-- Disques identiques conseillés
-
-### RAID 5 (Compromis)
-- Performance N-1 disques
-- 1 disque de parité
-- Minimum 3 disques
-
-### RAID 6 (Sécurité)
-- Performance N-2 disques
-- 2 disques de parité
-- Minimum 4 disques
+<table>
+  <thead>
+    <tr>
+      <th>Modèle</th>
+      <th>Prix/To</th>
+      <th>Performance</th>
+      <th>Points forts</th>
+      <th>Usage recommandé</th>
+      <th>Lien</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>WD Red Plus 4To<br/>(5400 tr/min)</td>
+      <td>28-31€</td>
+      <td>180 Mo/s</td>
+      <td>
+        • Silencieux<br/>
+        • Économique<br/>
+        • Faible consommation
+      </td>
+      <td>
+        • NAS 1-8 baies<br/>
+        • Réseau 1 Gbps<br/>
+        • Usage familial
+      </td>
+      <td><a href="https://amzn.to/40T4L35" target="_blank" rel="nofollow">&#10132; Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Seagate IronWolf 4To<br/>(5400 tr/min)</td>
+      <td>28-31€</td>
+      <td>190 Mo/s</td>
+      <td>
+        • Bon compromis<br/>
+        • AgileArray optimisé<br/>
+        • Garantie 3 ans
+      </td>
+      <td>
+        • NAS 1-8 baies<br/>
+        • Réseau 1-2.5 Gbps<br/>
+        • Usage mixte
+      </td>
+      <td><a href="https://amzn.to/3EmyMAl" target="_blank" rel="nofollow">&#10132; Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>WD Red Pro 4To<br/>(7200 tr/min)</td>
+      <td>39-43€</td>
+      <td>250 Mo/s</td>
+      <td>
+        • Hautes performances<br/>
+        • Garantie 5 ans<br/>
+        • Fiabilité supérieure
+      </td>
+      <td>
+        • NAS 8-24 baies<br/>
+        • Réseau 2.5-10 Gbps<br/>
+        • Usage professionnel
+      </td>
+      <td><a href="https://amzn.to/40ORJER" target="_blank" rel="nofollow">&#10132; Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Seagate IronWolf Pro 4To<br/>(7200 tr/min)</td>
+      <td>25-40€</td>
+      <td>250 Mo/s</td>
+      <td>
+        • Performances maximales<br/>
+        • Service récupération<br/>
+        • Garantie 5 ans
+      </td>
+      <td>
+        • NAS 8-24 baies<br/>
+        • Réseau 2.5-10 Gbps<br/>
+        • Usage intensif
+      </td>
+      <td><a href="https://amzn.to/42uTUP3" target="_blank" rel="nofollow">&#10132; Voir sur Amazon</a></td>
+    </tr>
+  </tbody>
+</table>
 
 ## Recommandations par usage
 
-### NAS familial (1 Gbps)
-- **Budget** : WD Red Plus
-  - 4-6 To par disque
-  - RAID 1 ou 5
-  - ~400€ pour 4x4To
-
-### Petite entreprise (2.5 Gbps)
-- **Recommandé** : Seagate IronWolf
-  - 8-12 To par disque
-  - RAID 5 ou 6
-  - ~800€ pour 4x8To
-
-### Usage pro (10 Gbps)
-- **Performance** : WD Red Pro
-  - 14-18 To par disque
-  - RAID 6
-  - ~1600€ pour 6x14To
-
-## Optimisation coût/performance
-
-### 1. Analyser vos besoins réels
-- Bande passante réseau
-- Capacité nécessaire
-- Budget disponible
-
-### 2. Considérer les limitations
-- Vitesse réseau
-- Capacité NAS
-- Type de RAID
-
-### 3. Calculer le coût total
-- Prix des disques
-- Consommation électrique
-- Garantie et SAV
+<table>
+  <thead>
+    <tr>
+      <th>Usage</th>
+      <th>Modèle recommandé</th>
+      <th>Configuration</th>
+      <th>Budget total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>NAS familial<br/>(1 Gbps)</td>
+      <td>WD Red Plus</td>
+      <td>
+        • 4-6 To par disque<br/>
+        • RAID 1 ou 5<br/>
+        • 4 disques de 4 To
+      </td>
+      <td>~450€</td>
+    </tr>
+    <tr>
+      <td>Petite entreprise<br/>(2.5 Gbps)</td>
+      <td>Seagate IronWolf</td>
+      <td>
+        • 8-12 To par disque<br/>
+        • RAID 5 ou 6<br/>
+        • 4 disques de 8 To
+      </td>
+      <td>~800€</td>
+    </tr>
+    <tr>
+      <td>Usage pro<br/>(10 Gbps)</td>
+      <td>WD Red Pro</td>
+      <td>
+        • 14-18 To par disque<br/>
+        • RAID 6<br/>
+        • 6 disques de 14 To
+      </td>
+      <td>~1600€</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Conclusion
 
-Le choix des disques pour votre NAS dépend principalement de :
-1. Votre infrastructure réseau
-2. Vos besoins en performance
-3. Votre budget
+Pour optimiser le rapport coût/performance de votre solution de stockage NAS, il faut adopter une approche méthodique. Tout d’abord, **analyser vos besoins réels** permet de dimensionner votre installation en fonction de la bande passante réseau disponible, de la capacité nécessaire et du budget alloué. Ensuite, il est nécessaire de **considérer les limitations**, notamment la vitesse du réseau, la capacité du NAS et le type de RAID choisi, qui peuvent impacter les performances globales du système.
 
-Recommandations clés :
-- Réseau 1 Gbps : WD Red Plus suffisant
-- Réseau 2.5 Gbps : IronWolf recommandé
-- Réseau 10 Gbps : Red Pro/IronWolf Pro nécessaire
+Le calcul du **coût total de possession** est une étape clé, en prenant en compte le prix des disques, la consommation énergétique et les coûts liés à la garantie et au support technique. 
 
-N'oubliez pas :
-- La vitesse réseau est souvent le facteur limitant
-- La redondance est plus importante que la performance
-- Le RAID n'est pas une sauvegarde
+Le choix des disques doit être aligné sur votre infrastructure réseau et vos exigences de performance. Pour un réseau **1 Gbps**, les disques WD Red Plus suffisent, tandis qu’un réseau **2.5 Gbps** bénéficiera des performances des disques IronWolf. Pour une infrastructure **10 Gbps**, les modèles Red Pro ou IronWolf Pro sont recommandés.
+
+Enfin, il est important de garder à l’esprit que **la vitesse du réseau est souvent le principal facteur limitant**, et que la **redondance des données** est plus critique que la performance brute. 
+
+Rappelons que **le RAID ne remplace pas une sauvegarde**, mais constitue un outil de continuité de service.
