@@ -39,11 +39,18 @@ npm run dev
 
 Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur pour voir le site..
 
+## Données de contact
 
+Les données de contact, légales, ... sont variabilisée dans le fichier .env. Les données du fichier model-anv sont identiques à celles du fichier .env. 
 
+## HTML
+La flèche vers la droite est utilisées pour rendre les liens vers Amazon plus attratifs. Le code du caractère HTML est &#10132; 
 
+Si besoin, les informations sont sur [ce site](https://www.toptal.com/designers/htmlarrows/symbols/).
 
-
+## AI Generation
+Après que les contenus sont écrits, il faut vérifier qu'ils ne sont pas détectés comme étant écrit par l'IA. 
+- [surferseo](https://surferseo.com/ai-content-detector/)
 
 
 ## Documentation
