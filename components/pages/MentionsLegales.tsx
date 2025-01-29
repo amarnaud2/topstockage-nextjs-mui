@@ -46,6 +46,11 @@ export default function MentionsLegalesContent() {
             <ListItem><strong>E-Mail : &nbsp;</strong><a href={`mailto:${process.env.NEXT_PUBLIC_HOSTING_EMAIL}`} className="text-blue-600 underline">{process.env.NEXT_PUBLIC_HOSTING_EMAIL}</a></ListItem>
             <ListItem><strong>Site web : &nbsp;</strong> <a href={`${process.env.NEXT_PUBLIC_HOSTING_URL}`} className="text-blue-600 underline">{process.env.NEXT_PUBLIC_HOSTING_URL}</a></ListItem>
           </List>
+          <Typography variant="body1" gutterBottom>
+            Localisation des serveurs Vercel : Vercel dispose d'un réseau mondial de serveurs, appelé Vercel Edge Network, comprenant 119 points de présence (PoPs) répartis dans 94 villes à travers 51 pays. 
+            Cette infrastructure permet de stocker le contenu au plus près des utilisateurs et d'exécuter des calculs dans des régions proches de vos données, réduisant ainsi la latence et améliorant les performances pour les utilisateurs finaux. 
+            En conséquence, les données de <strong>topstockage.fr</strong> peuvent être traitées et stockées sur les serveurs de Vercel, répartis dans le monde entier, y compris potentiellement en dehors de l'Union européenne.
+          </Typography>
 
           <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
             Propriété intellectuelle
