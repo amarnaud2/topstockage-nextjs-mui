@@ -12,6 +12,7 @@ Ce site propose des liens d'affiliation avec le programme d'affiliation d'Amazon
 - [Gray-Matter](https://github.com/jonschlinkert/gray-matter)
 - [remark](https://github.com/remarkjs/remark)
 - [remark-html](https://github.com/remarkjs/remark-html)
+- [next-sitemap](https://github.com/iamvishnusankar/next-sitemap)
 - [GitHub private](https://github.com/ArnaudMartin/nextjs-mui-blog)
 - [Vercel](https://vercel.com/) pour l'hébergement avec le CDN Vercel, la prise en charge du build incrémental (ISR), scalabilité automatique.
 
@@ -39,6 +40,29 @@ npm run dev
 
 Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur pour voir le site..
 
+## SEO : sitemap.xml et robot.txt
+
+Le fichier next-sitemap.config.js définit :
+- La génération automatique du robots.txt
+- Une fréquence de mise à jour annuelle par défaut
+- L'exclusion des pages mentions légales et 404
+- Des règles spécifiques pour :
+   - La page d'accueil (mise à jour hebdomadaire, priorité maximale)
+   - Les articles de blog (mise à jour annuelle, priorité 0.8)
+   - Le script postbuild dans package.json s'exécutera automatiquement après chaque next build, générant ainsi le sitemap.xml et le robots.txt avec les dernières modifications.
+
+Les fichiers seront générés dans le dossier public seront accessibles aux moteurs de recherche aux URLs suivantes :
+
+https://www.topstockage.fr/sitemap.xml
+https://www.topstockage.fr/robots.txt
+
+Pour tester la génération :
+
+```bash
+$ cd ~/dev/nextjs/nextjs-mui-blog
+$ npm run build
+```
+
 ## Données de contact
 
 Les données de contact, légales, ... sont variabilisée dans le fichier .env. Les données du fichier model-anv sont identiques à celles du fichier .env. 
@@ -51,6 +75,8 @@ Si besoin, les informations sont sur [ce site](https://www.toptal.com/designers/
 ## AI Generation
 Après que les contenus sont écrits, il faut vérifier qu'ils ne sont pas détectés comme étant écrit par l'IA. 
 - [surferseo](https://surferseo.com/ai-content-detector/)
+- [Undetectable AI](https://undetectable.ai)
+- [Google AI Content Filter](https://ai-content-filter.google.com/)
 
 
 ## Documentation
