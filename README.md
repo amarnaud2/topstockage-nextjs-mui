@@ -60,7 +60,7 @@ Pour tester la génération :
 
 ```bash
 $ cd ~/dev/nextjs/nextjs-mui-blog
-$ npm run build
+$ npm run postbuild
 ```
 
 ## Données de contact

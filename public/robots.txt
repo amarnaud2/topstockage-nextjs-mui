@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /mentions-legales
+Disallow: /404
+
+# Host
+Host: https://www.topstockage.fr
+
+# Sitemaps
+Sitemap: https://www.topstockage.fr/sitemap.xml
