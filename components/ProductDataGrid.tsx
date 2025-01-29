@@ -1,11 +1,15 @@
 'use client';
 
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import dynamic from 'next/dynamic';
-import { GridToolbar, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import {
+  GridToolbar,
+  GridColDef,
+  GridRenderCellParams,
+  GridValidRowModel
+} from '@mui/x-data-grid';
 import { frFR } from '@mui/x-data-grid/locales';
 import { Product } from '@/types/product';
-import { Typography } from '@mui/material';
 
 interface ProductDataGridProps {
   products: Product[];
@@ -18,16 +22,16 @@ const ClientSideDataGrid = dynamic(
 );
 
 export default function ProductDataGrid({ products }: ProductDataGridProps) {
-  const rows = products.map((product) => ({
-    ...product,
-  }));
+  // 🔥 Correction : Utilisation de GridValidRowModel pour rows
+  const rows: GridValidRowModel[] = products;
 
-  const columns: GridColDef<Product>[] = [
+  // 🔥 Correction : Utilisation de GridValidRowModel pour columns
+  const columns: GridColDef<GridValidRowModel>[] = [
     {
       field: 'title',
       headerName: 'Produit avec Lien d\'affiliation Amazon',
       width: 400,
-      renderCell: (params: GridRenderCellParams<Product, string>) => (
+      renderCell: (params: GridRenderCellParams<GridValidRowModel, string>) => (
         <a href={params.row.amazonLink} target="_blank" rel="noopener noreferrer">
           {params.value}
         </a>
@@ -53,7 +57,7 @@ export default function ProductDataGrid({ products }: ProductDataGridProps) {
       headerName: 'Prix',
       width: 100,
       type: 'number',
-      renderCell: (params: GridRenderCellParams<Product, number>) => (
+      renderCell: (params: GridRenderCellParams<GridValidRowModel, number>) => (
         <span>{params.value?.toFixed(2)} €</span>
       ),
     },
@@ -62,7 +66,7 @@ export default function ProductDataGrid({ products }: ProductDataGridProps) {
       headerName: 'Prix/To',
       width: 100,
       type: 'number',
-      renderCell: (params: GridRenderCellParams<Product, number>) => (
+      renderCell: (params: GridRenderCellParams<GridValidRowModel, number>) => (
         <span>{params.value?.toFixed(2)} €</span>
       ),
     },
@@ -75,7 +79,7 @@ export default function ProductDataGrid({ products }: ProductDataGridProps) {
       field: 'features',
       headerName: 'Caractéristiques',
       width: 300,
-      renderCell: (params: GridRenderCellParams<Product, string[]>) => (
+      renderCell: (params: GridRenderCellParams<GridValidRowModel, string[]>) => (
         <span>{params.value?.join(', ')}</span>
       ),
     },
@@ -92,23 +96,8 @@ export default function ProductDataGrid({ products }: ProductDataGridProps) {
         slotProps={{
           toolbar: {
             showQuickFilter: true,
-            quickFilterProps: { 
-              debounceMs: 500,
-              InputProps: {
-                id: 'quick-filter-input',
-                name: 'quick-filter'
-              }
-            },
+            quickFilterProps: { debounceMs: 500 },
           },
-          pagination: {
-            labelRowsPerPage: 'Lignes par page:',
-            labelDisplayedRows: ({ from, to, count }) => `${from}-${to} sur ${count}`,
-            rowsPerPageOptions: [10, 25, 50],
-            SelectProps: {
-              id: 'rows-per-page-select',
-              name: 'rows-per-page'
-            }
-          }
         }}
         initialState={{
           pagination: {
@@ -116,28 +105,7 @@ export default function ProductDataGrid({ products }: ProductDataGridProps) {
           },
         }}
         pageSizeOptions={[10, 25, 50]}
-        localeText={{
-          toolbarColumns: "Colonnes",
-          toolbarFilters: "Filtres",
-          toolbarDensity: "Densité",
-          toolbarExport: "Exporter",
-          toolbarQuickFilterPlaceholder: "Rechercher...",
-          filterPanelInputLabel: "Valeur",
-          filterPanelColumns: "Colonnes",
-          filterPanelOperator: "Opérateur",
-          filterOperatorContains: "contient",
-          filterOperatorEquals: "égal à",
-          filterOperatorStartsWith: "commence par",
-          filterOperatorEndsWith: "se termine par",
-          filterOperatorIsEmpty: "est vide",
-          filterOperatorIsNotEmpty: "n'est pas vide",
-          filterOperatorIsAnyOf: "est l'un de",
-        //  columnsPanelTextFieldLabel: "Rechercher une colonne",
-        //  columnsPanelTextFieldPlaceholder: "Titre de la colonne",
-        //  columnsPanelShowAllButton: "Tout afficher",
-        //  columnsPanelHideAllButton: "Tout masquer",
-          ...frFR.components.MuiDataGrid.defaultProps.localeText,
-        }}
+        localeText={frFR.components.MuiDataGrid.defaultProps.localeText}
       />
       <Typography 
         variant="caption" 

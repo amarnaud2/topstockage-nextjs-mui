@@ -44,7 +44,7 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
         }}
       />
       <Grid2 container>
-        <Grid2 md={6}>
+        <Grid2 component="div" size={{ md: 6 }}>
           <Box
             sx={{
               position: 'relative',

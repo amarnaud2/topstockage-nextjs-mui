@@ -16,7 +16,7 @@ export default function AProposContent() {
           </Typography>
 
           <Grid2 container spacing={4}>
-            <Grid2 xs={12} md={8}>
+            <Grid2 component="div" size={{ xs: 12, md: 8 }}>
               <Typography variant="body1" gutterBottom>
                 Top Stockage est votre guide de référence pour tout ce qui concerne le choix de périphériques de stockage numérique. 
                 Notre mission est de vous aider à faire les meilleurs choix en matière de stockage de données, 
@@ -53,7 +53,7 @@ export default function AProposContent() {
               </Typography>
             </Grid2>
 
-            <Grid2 xs={12} md={4}>
+            <Grid2 component="div" size={{ xs: 12, md: 4 }}>
               <Box sx={{ bgcolor: 'background.paper', p: 3, borderRadius: 1 }}>
                 <Typography variant="h6" gutterBottom>
                   Contact
