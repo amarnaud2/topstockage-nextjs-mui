@@ -1,6 +1,6 @@
 'use client';
 
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import BlogPostCard from './BlogPostCard';
 import { BlogPost } from '@/lib/blog';
 

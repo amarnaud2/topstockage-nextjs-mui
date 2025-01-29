@@ -1,4 +1,4 @@
-import { Container, Typography, Box, CircularProgress, Grid2 } from '@mui/material';
+import { Container, Typography, Box, CircularProgress } from '@mui/material';
 import ClientLayout from '@/components/ClientLayout';
 import { getAllPosts } from '@/lib/blog';
 import { Suspense } from 'react';

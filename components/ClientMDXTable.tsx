@@ -1,11 +1,11 @@
 'use client';
 
 import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableBody, { TableBodyProps } from '@mui/material/TableBody';
+import TableCell, { TableCellProps } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+import TableHead, { TableHeadProps } from '@mui/material/TableHead';
+import TableRow, { TableRowProps } from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { ReactNode } from 'react';
 
@@ -13,19 +13,19 @@ interface MDXTableProps {
   children: ReactNode;
 }
 
-export function ClientTableHead(props: any) {
+export function ClientTableHead(props: TableHeadProps) {
   return <TableHead sx={{ bgcolor: 'primary.main' }} {...props} />;
 }
 
-export function ClientTableBody(props: any) {
+export function ClientTableBody(props: TableBodyProps) {
   return <TableBody {...props} />;
 }
 
-export function ClientTableRow(props: any) {
+export function ClientTableRow(props: TableRowProps) {
   return <TableRow {...props} />;
 }
 
-export function ClientTableCell(props: { component?: string; [key: string]: any }) {
+export function ClientTableCell(props: TableCellProps) {
   if (props.component === 'th') {
     return (
       <TableCell

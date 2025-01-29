@@ -9,7 +9,7 @@ interface ClientPageProps {
   description?: string;
   url?: string;
   type?: 'article' | 'webpage' | 'website';
-  jsonLdData?: any;
+  jsonLdData?: Record<string, unknown>;
 }
 
 export default function ClientPage({

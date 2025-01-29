@@ -12,16 +12,16 @@ const Table = ({ children }: { children: React.ReactNode }) => (
 
 const components = {
   table: Table,
-  th: (props: any) => (
+  th: (props: React.ComponentPropsWithoutRef<'th'>) => (
     <th
       {...props}
       className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b bg-gray-50"
     />
   ),
-  td: (props: any) => (
+  td: (props: React.ComponentPropsWithoutRef<'td'>) => (
     <td {...props} className="px-6 py-4 text-sm text-gray-500 border-b" />
   ),
-  tr: (props: any) => (
+  tr: (props: React.ComponentPropsWithoutRef<'tr'>) => (
     <tr {...props} className="even:bg-gray-50" />
   ),
 };

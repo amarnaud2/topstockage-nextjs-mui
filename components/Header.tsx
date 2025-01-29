@@ -11,7 +11,6 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
-import { visuallyHidden } from '@mui/utils';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -70,7 +69,7 @@ export default function Header() {
             <IconButton
               size="large"
               aria-label="Ouvrir le menu"
-              aria-controls={Boolean(anchorElNav) ? 'menu-appbar' : undefined}
+              aria-controls={anchorElNav ? 'menu-appbar' : undefined}
               aria-expanded={Boolean(anchorElNav)}
               aria-haspopup="true"
               onClick={handleOpenNavMenu}

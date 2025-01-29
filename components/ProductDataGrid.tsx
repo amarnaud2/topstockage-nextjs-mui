@@ -2,10 +2,7 @@
 
 import { Box } from '@mui/material';
 import dynamic from 'next/dynamic';
-import {
-  DataGrid,
-  GridToolbar,
-} from '@mui/x-data-grid';
+import { GridToolbar, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { frFR } from '@mui/x-data-grid/locales';
 import { Product } from '@/types/product';
 import { Typography } from '@mui/material';
@@ -22,16 +19,15 @@ const ClientSideDataGrid = dynamic(
 
 export default function ProductDataGrid({ products }: ProductDataGridProps) {
   const rows = products.map((product) => ({
-    id: product.asin,
     ...product,
   }));
 
-  const columns = [
+  const columns: GridColDef<Product>[] = [
     {
       field: 'title',
       headerName: 'Produit avec Lien d\'affiliation Amazon',
       width: 400,
-      renderCell: (params: any) => (
+      renderCell: (params: GridRenderCellParams<Product, string>) => (
         <a href={params.row.amazonLink} target="_blank" rel="noopener noreferrer">
           {params.value}
         </a>
@@ -57,7 +53,7 @@ export default function ProductDataGrid({ products }: ProductDataGridProps) {
       headerName: 'Prix',
       width: 100,
       type: 'number',
-      renderCell: (params: any) => (
+      renderCell: (params: GridRenderCellParams<Product, number>) => (
         <span>{params.value?.toFixed(2)} €</span>
       ),
     },
@@ -66,7 +62,7 @@ export default function ProductDataGrid({ products }: ProductDataGridProps) {
       headerName: 'Prix/To',
       width: 100,
       type: 'number',
-      renderCell: (params: any) => (
+      renderCell: (params: GridRenderCellParams<Product, number>) => (
         <span>{params.value?.toFixed(2)} €</span>
       ),
     },
@@ -79,7 +75,9 @@ export default function ProductDataGrid({ products }: ProductDataGridProps) {
       field: 'features',
       headerName: 'Caractéristiques',
       width: 300,
-      renderCell: (params) => params.value.join(', '),
+      renderCell: (params: GridRenderCellParams<Product, string[]>) => (
+        <span>{params.value?.join(', ')}</span>
+      ),
     },
   ];
 
@@ -134,10 +132,10 @@ export default function ProductDataGrid({ products }: ProductDataGridProps) {
           filterOperatorIsEmpty: "est vide",
           filterOperatorIsNotEmpty: "n'est pas vide",
           filterOperatorIsAnyOf: "est l'un de",
-          columnsPanelTextFieldLabel: "Rechercher une colonne",
-          columnsPanelTextFieldPlaceholder: "Titre de la colonne",
-          columnsPanelShowAllButton: "Tout afficher",
-          columnsPanelHideAllButton: "Tout masquer",
+        //  columnsPanelTextFieldLabel: "Rechercher une colonne",
+        //  columnsPanelTextFieldPlaceholder: "Titre de la colonne",
+        //  columnsPanelShowAllButton: "Tout afficher",
+        //  columnsPanelHideAllButton: "Tout masquer",
           ...frFR.components.MuiDataGrid.defaultProps.localeText,
         }}
       />

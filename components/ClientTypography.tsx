@@ -1,11 +1,10 @@
 'use client';
 
 import Typography from '@mui/material/Typography';
-import { ReactNode } from 'react';
+import { ReactNode, HTMLAttributes } from 'react';
 
-interface TypographyProps {
+interface TypographyProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
-  [key: string]: any;
 }
 
 export function H1(props: TypographyProps) {

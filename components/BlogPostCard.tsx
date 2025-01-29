@@ -14,9 +14,9 @@ import PlaceholderImage from './PlaceholderImage';
 import type { BlogPostCardProps } from '@/types/blog';
 import { useState } from 'react';
 
-interface BlogPostCardProps {
-  post: BlogPostCardProps;
-}
+//interface BlogPostCardProps {
+//  post: BlogPostCardProps;
+//}
 
 export default function BlogPostCard({ post }: BlogPostCardProps) {
   const { title, description, image, slug, category, datePublished, author } = post;
@@ -60,7 +60,7 @@ export default function BlogPostCard({ post }: BlogPostCardProps) {
           <Typography 
             variant="body2" 
             color="text.secondary"
-            paragraph
+            property="paragraph"
             sx={{
               display: '-webkit-box',
               WebkitLineClamp: 3,

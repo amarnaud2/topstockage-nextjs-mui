@@ -51,7 +51,7 @@ export default function Footer() {
     >
       <Container maxWidth="lg">
         <Grid2 container spacing={4}>
-          <Grid2 xs={12} md={8}>
+          <Grid2 size={{ xs: 12, md: 8 }}>
             <Typography variant="h6" gutterBottom>
               Top Stockage
             </Typography>
@@ -86,7 +86,7 @@ export default function Footer() {
             </Box>
           </Grid2>
           
-          <Grid2 xs={12} md={4} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Grid2 size={{ xs: 12, md: 4 }} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Box>
               <Typography variant="h6" gutterBottom>
                 Suivez-nous

@@ -22,7 +22,7 @@ export default function FeaturedPost(props: FeaturedPostProps) {
   const { post } = props;
 
   return (
-    <Grid2 xs={12} md={6}>
+    <Grid2 component="div" size={{ xs: 12, md: 6 }}>
       <CardActionArea component="a" href="#">
         <Card sx={{ display: 'flex' }}>
           <CardContent sx={{ flex: 1 }}>

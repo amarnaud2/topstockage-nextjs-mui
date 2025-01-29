@@ -8,20 +8,19 @@ import BlogPostDate from '@/components/BlogPostDate';
 import MDXComponents from '@/components/MDXComponents';
 import { staticRoutes } from '@/config/navigation';
 
-// Activer la génération statique avec revalidation
-export const dynamic = 'force-static';
+// Activer ISR avec revalidation
+export const dynamic = 'force-static'; // Utilise le rendu statique
 export const revalidate = 3600; // Revalider toutes les heures
 
-interface Props {
-  params: {
-    category: string;
-    slug: string;
-  };
+// Typage des paramètres de la route
+interface BlogParams {
+  category: string;
+  slug: string;
 }
 
-// Générer les chemins statiques pour tous les articles
+// Génération des chemins statiques
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
+  const posts = await getAllPosts(); // Récupérer tous les articles
   return posts.map((post) => ({
     category: post.category,
     slug: post.slug,
@@ -29,27 +28,31 @@ export async function generateStaticParams() {
 }
 
 // Fonction pour récupérer l'article
-async function getArticle(paramsPromise: Promise<Props['params']>) {
-  // Attendre la résolution des paramètres dynamiques
-  const params = await paramsPromise;
+async function getArticle(params: BlogParams) {
+  const { category, slug } = params;
 
   // Vérifier si la catégorie est valide
   const isValidCategory = staticRoutes.categories.some(
-    (cat) => cat.category === params.category
+    (cat) => cat.category === category
   );
 
   if (!isValidCategory) {
-    return null;
+    return null; // Retourner null si la catégorie est invalide
   }
 
   // Récupérer l'article
-  return await getPostBySlug(`${params.category}/${params.slug}`);
+  return await getPostBySlug(`${category}/${slug}`);
 }
 
+// Composant de page
+export default async function BlogPost({ params }: { params: Promise<BlogParams> }) {
+  // Attendre que `params` soit résolu
+  const resolvedParams = await params;
 
-export default async function BlogPost({ params }: Props) {
-  const post = await getArticle(Promise.resolve(params));
+  // Récupérer l'article à l'aide des paramètres déstructurés
+  const post = await getArticle(resolvedParams);
 
+  // Si aucun article n'est trouvé, renvoyer une page 404
   if (!post) {
     notFound();
   }
@@ -65,11 +68,7 @@ export default async function BlogPost({ params }: Props) {
             py: { xs: 3, sm: 4 },
           }}
         >
-          {/* 
-          <Typography variant="h3" component="h1" gutterBottom>
-            {post.title}
-          </Typography>
-          */}
+          {/* Image de l'article */}
           <Box sx={{ position: 'relative', height: '400px', mb: 4 }}>
             <BlogImage
               src={post.image}
@@ -85,6 +84,7 @@ export default async function BlogPost({ params }: Props) {
             )}
           </Box>
 
+          {/* Métadonnées de l'article */}
           <Box sx={{ mb: 4 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Typography variant="body2" color="text.secondary">
@@ -94,11 +94,9 @@ export default async function BlogPost({ params }: Props) {
             </Box>
           </Box>
 
+          {/* Contenu principal en MDX */}
           <Box className="prose prose-lg max-w-none">
-            <MDXRemote 
-              source={post.content} 
-              components={MDXComponents}
-            />
+            <MDXRemote source={post.content} components={MDXComponents} />
           </Box>
         </Box>
       </Container>
