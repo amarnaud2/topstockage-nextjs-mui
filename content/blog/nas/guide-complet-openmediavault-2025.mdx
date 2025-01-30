@@ -2,7 +2,7 @@
 title: "OpenMediaVault : Guide complet pour monter votre NAS en 2025"
 slug: "guide-complet-openmediavault-2025"
 description: "Découvrez comment créer votre serveur NAS avec OpenMediaVault : installation, configuration, plugins essentiels et matériel recommandé pour une solution de stockage open source performante."
-datePublished: "2025-01-21"
+datePublished: "2025-01-28"
 dateRetired: ""
 author: "Arnaud"
 keywords:
@@ -13,248 +13,407 @@ keywords:
   - stockage réseau
   - Debian
   - DIY
-image: "/images/openmediavault-setup.jpg"
-imageCopyright: "Photo de Sora Shimazaki: https://www.pexels.com/fr-fr/photo/donnees-information-clavier-technologie-5926398/"
+image: "/images/blog/nas/openmediavault-setup.webp"
+imageCopyright: "Photo de Pixabay: https://www.pexels.com/fr-fr/photo/carte-mere-d-ordinateur-noire-159235/"
 canonical: "https://www.topstockage.fr/blog/nas/guide-complet-openmediavault-2025"
 ---
 
 # OpenMediaVault : Guide complet pour monter votre NAS en 2025
 
-OpenMediaVault (OMV) est une solution NAS open source basée sur Debian, idéale pour créer un serveur de stockage domestique ou petit bureau. Découvrez comment monter votre propre NAS avec OMV.
+OpenMediaVault (OMV) est une solution NAS open source basée sur Debian, parfaite pour créer un serveur de stockage domestique ou petit bureau. Découvrez comment monter votre propre NAS avec OMV.
 
 ## Pourquoi choisir OpenMediaVault ?
 
-### Points forts
-- Basé sur Debian (stabilité)
-- Interface web intuitive
-- Légèreté du système
-- Large choix de plugins
-- Communauté active
-- Parfait pour débutants
+OpenMediaVault est une bonne solution pour ceux qui recherchent un système de stockage en réseau (NAS) simple, 
+léger et performant. Basé sur Debian, il bénéficie d’une grande stabilité et d’un suivi régulier des mises à jour, 
+garantissant un fonctionnement fiable sur le long terme. 
 
-### Prérequis techniques
-- Connaissances Linux basiques
-- Notions de réseau
-- Compréhension du RAID
+Son interface web intuitive permet de gérer facilement les partages de fichiers, les utilisateurs et les services 
+sans nécessiter de compétences avancées en ligne de commande. De plus, grâce à son large choix de plugins, 
+il offre une grande flexibilité, notamment notamment via Docker, il s’adapte à de nombreux usages : 
+sauvegarde, multimédia, hébergement personnel, etc. 
+
+Enfin, une communauté active assure un support réactif, ce qui en fait un très bon choix pour les débutants 
+souhaitant configurer un NAS sans complexité inutile.
+
+## Prérequis techniques
+Bien qu’accessible, OpenMediaVault requiert quelques connaissances de base en Linux pour l’installation et la 
+gestion avancée du système. Il est également important d’avoir des notions de réseau, notamment sur la 
+gestion des adresses IP et des ports, afin de configurer correctement les accès aux fichiers et services. 
+Enfin, une compréhension du RAID est utile pour optimiser la sécurité et la redondance des données, 
+bien que l’interface facilite grandement la mise en place de ces configurations.
 
 ## Configuration matérielle recommandée
 
-### Configuration minimale (Budget ~300€)
-- **Processeur** : Intel Celeron J4125 (89.99€)
-  - 4 cœurs
-  - TDP 10W
-  [Voir sur Amazon](#)
+### Entrée de gamme – Stockage de fichiers et sauvegarde
+💡 Objectif : NAS fiable et abordable pour stockage et backup.
 
-- **Carte mère** : ASRock J4125-ITX (99.99€)
-  - 4 ports SATA
-  - Intel Gigabit LAN
-  [Voir sur Amazon](#)
+<table>
+  <thead>
+    <tr>
+      <th>Composant</th>
+      <th>Modèle</th>
+      <th>Caractéristiques principales</th>
+      <th>Prix</th>
+      <th>Lien vers Amazon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Carte mère</td>
+      <td>ASRock J5040-ITX</td>
+      <td>4x ports SATA 6Gb/s, processeur Intel Pentium J5040 intégré</td>
+      <td>~148€</td>
+      <td><a href="https://amzn.to/4hdADX2" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>RAM</td>
+      <td>DDR4 SO-DIMM</td>
+      <td>8 Go, compatible avec la carte mère</td>
+      <td>~31,78€</td>
+      <td><a href="https://amzn.to/42wKe6z" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Carte réseau</td>
+      <td>Intel X550-T2</td>
+      <td>10GbE, double port RJ45</td>
+      <td>~139,35€</td>
+      <td><a href="https://amzn.to/40Citan" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+  </tbody>
+</table>
 
-- **RAM** : 8Go DDR4 (39.99€)
-  - Simple module
-  - Suffisant pour démarrer
-  [Voir sur Amazon](#)
+💰 Coût estimé : ~320€
 
-- **Boîtier** : Fractal Design Node 304 (89.99€)
-  - 6 emplacements 3.5"
-  - Compact
-  [Voir sur Amazon](#)
+📌 Pourquoi ce choix ?
+Un coût maîtrisé, suffisant pour un NAS maison sous OpenMediaVault, 
+avec 4 ports SATA pour une capacité de stockage correcte et la 
+possibilité de monter un RAID simple. Trop limité pour les fonctions multimédia.
 
-### Configuration recommandée (Budget ~500€)
-- **Processeur** : Intel Core i3-12100 (119.99€)
-  - Plus de puissance
-  - Support virtualisation
-  [Voir sur Amazon](#)
+### Intermédiaire – Stockage + Streaming Plex (1080p)
+💡 Objectif : Un NAS capable de gérer Plex avec transcodage en 1080p, tout en offrant de la flexibilité pour Docker et d’autres services.
 
-- **Carte mère** : ASRock B660M-HDV (99.99€)
-  - 6 ports SATA
-  - Support M.2
-  [Voir sur Amazon](#)
+<table>
+  <thead>
+    <tr>
+      <th>Composant</th>
+      <th>Modèle</th>
+      <th>Caractéristiques principales</th>
+      <th>Prix</th>
+      <th>Lien vers Amazon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Carte mère</td>
+      <td>ASRock B760M Pro RS</td>
+      <td>4x ports SATA 6Gb/s, support M.2</td>
+      <td>~131,53€</td>
+      <td><a href="https://amzn.to/4hAvYhE" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>RAM</td>
+      <td>DDR4</td>
+      <td>16 Go, 3200 MHz</td>
+      <td>~31,99€</td>
+      <td><a href="https://amzn.to/4jyTfSP" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Processeur</td>
+      <td>Intel Core i5-12600</td>
+      <td>Excellent pour le transcodage 1080p avec QuickSync</td>
+      <td>~200€</td>
+      <td><a href="https://amzn.to/4hDOplh" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Carte réseau</td>
+      <td>Intel X550-T2</td>
+      <td>10GbE, double port RJ45</td>
+      <td>~139,35€</td>
+      <td><a href="https://amzn.to/40Citan" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+  </tbody>
+</table>
 
-- **RAM** : 16Go DDR4 (79.99€)
-  - 2x8Go dual channel
-  - Pour Docker et VMs
-  [Voir sur Amazon](#)
+💰 Coût estimé : ~500€
 
-- **Boîtier** : Fractal Design Define R6 (149.99€)
-  - 11 emplacements 3.5"
-  - Silencieux
-  [Voir sur Amazon](#)
+📌 Pourquoi ce choix ?
+- ✅ Transcodage 1080p fluide avec QuickSync
+- ✅ Carte mère évolutive avec 4 ports SATA et support M.2 pour un cache SSD
+- ✅ Flexibilité avec Docker et Plex
 
-## Installation d'OpenMediaVault
+### Haut de gamme – NAS avec transcodage Plex en plusieurs résolutions (1080p & 4K)
+💡 Objectif : Un NAS ultra-performant pour transcoder en temps réel du contenu 1080p et 4K via Plex.
+
+<table>
+  <thead>
+    <tr>
+      <th>Composant</th>
+      <th>Modèle</th>
+      <th>Caractéristiques principales</th>
+      <th>Prix</th>
+      <th>Lien vers Amazon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Processeur</td>
+      <td>Intel Core i7-12700</td>
+      <td>12 cœurs (8P + 4E) / 20 threads, Quick Sync Video pour le transcodage, TDP 65W (125W 12700K)</td>
+      <td>~329,95€</td>
+      <td><a href="https://amzn.to/3PWyBhO" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Carte mère</td>
+      <td>ASUS PRIME B660-PLUS D4</td>
+      <td>4 ports SATA 6Gb/s, 3 slots M.2 NVMe, Compatible DDR4, PCIe 4.0 x16</td>
+      <td>~134,99€</td>
+      <td><a href="https://amzn.to/3WEHfW4" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>RAM</td>
+      <td>DDR4 ECC</td>
+      <td>32 Go, 2666 MHz, non ECC</td>
+      <td>~62,99€</td>
+      <td><a href="https://amzn.to/4jzSVDk" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Carte réseau</td>
+      <td>Intel X710-T2L</td>
+      <td>10GbE, double port RJ45, faible latence, interface PCIe x4</td>
+      <td>~321€</td>
+      <td><a href="https://amzn.to/3WHXrpE" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+  </tbody>
+</table>
+
+💰 Coût estimé : ~850€
+
+📌 Pourquoi ce choix ?
+- ✅ Transcodage 4K fluide avec QuickSync
+- ✅ 8 ports SATA pour une grande capacité de stockage
+- ✅ Mémoire ECC pour une sécurité accrue des données
+- ✅ Carte réseau évolutive
+
+## Quelle carte réseau choisir ?
+
+<table>
+  <thead>
+    <tr>
+      <th>Usage</th>
+      <th>Carte recommandée</th>
+      <th>Caractéristiques</th>
+      <th>Prix</th>
+      <th>Lien vers Amazon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1GbE simple</td>
+      <td>Intel I210-T1</td>
+      <td>1 port, 1GbE, idéal usage basique</td>
+      <td>~54,14€</td>
+      <td><a href="https://amzn.to/3X3pKz5" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>1GbE robuste</td>
+      <td>Intel I350-T2</td>
+      <td>1 ports, 1GbE, support LACP</td>
+      <td>~56€</td>
+      <td><a href="https://amzn.to/3WEIWCU" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>2.5GbE économique</td>
+      <td>Intel I225-V</td>
+      <td>1 port, 2.5GbE, bon rapport qualité/prix</td>
+      <td>~104,56€</td>
+      <td><a href="https://amzn.to/4gfkjni" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>2.5GbE évolutif</td>
+      <td>Intel X550-T2</td>
+      <td>2 ports, compatible 2.5GbE et 10GbE, interface PCIe x4</td>
+      <td>~139,35€</td>
+      <td><a href="https://amzn.to/40Citan" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+  </tbody>
+</table>
+
+💡 Conseils :
+1GbE suffit pour un usage NAS de base avec transfert de fichiers et streaming en réseau local.
+2.5GbE est recommandé si vous transférez régulièrement de gros fichiers ou utilisez Plex en streaming 4K.
+Pensez à **vérifier que les autres éléments de votre réseau** (switch, router, etc.) **supportent le 2.5GbE** avant d’acheter une carte réseau ! 🚀
+Ne négligez pas la qualité du câble réseau qui relie votre NAS à votre routeur : il peut être dégradé et causer des pertes de données.
+
+## Installation d'OpenMediaVault : Guide pas à pas
+Mettre en place OpenMediaVault (OMV) est une étape essentielle 
+pour transformer un simple PC ou serveur en un **NAS performant et 
+flexible**. Voici comment procéder de manière efficace, en évitant les 
+pièges courants.
 
 ### 1. Préparation
-1. Télécharger l'ISO OMV
-2. Créer une clé USB bootable
-3. Configurer le BIOS (UEFI)
-4. Connecter en ethernet
+Avant de commencer l’installation, il est crucial de bien préparer votre matériel et vos supports d’installation.
+
+**Téléchargement de l’ISO** : Rendez-vous sur le [site officiel d’OpenMediaVault](https://www.openmediavault.org/) pour récupérer la dernière version de l’image ISO. Assurez-vous de télécharger la version compatible avec votre architecture (généralement amd64 pour un NAS moderne).
+
+**Création d’une clé USB bootable** : Utilisez un outil comme **Rufus** (Windows) ou **balenaEtcher** (Linux/macOS) pour écrire l’image ISO sur une clé USB. Une clé de **8 Go minimum** est recommandée.
+
+**Configuration du BIOS/UEFI** : Redémarrez votre machine et accédez au **BIOS** (souvent avec la touche F2, F12, Suppr ou Échap selon le fabricant). Vérifiez que :
+
+Le **boot en UEFI est activé** (sauf matériel ancien qui nécessite un mode Legacy).
+
+Le **démarrage sur USB** est prioritaire dans l’ordre de boot pour prendre en compte le démarrage sur votre clé et pouvoir installer le système.
+
+**Connexion Ethernet** : Branchez votre NAS en **filaire** via un câble Ethernet pour éviter toute instabilité réseau durant l’installation.
 
 ### 2. Installation de base
-1. Suivre l'assistant d'installation
-2. Configuration réseau initiale
-3. Premier accès à l'interface web
-4. Mise à jour du système
+L’installation d’OMV est guidée par un assistant, ce qui la rend plus facile.
+
+Après avoir booté sur la clé USB, suivez les instructions pas à pas. L’installateur demandera de choisir le disque sur lequel OMV sera installé. **Evitez d’installer le système sur le même disque que vos données**. Personnellement, j'installe le système sur un SSD dédié. 
+
+OMV détecte automatiquement votre connexion Ethernet. Assurez-vous que le DHCP est actif ou configurez une adresse IP statique pour un accès stable à l’interface web.
+
+Une fois l’installation terminée, OMV redémarre et affiche l’**adresse IP d’accès**. Ouvrez un navigateur et connectez-vous à l'interface Web via :
+```bash
+http://[IP_DE_VOTRE_NAS]
+````
+
+**Identifiants par défaut qu'il est recommandé de changer** :
+- Utilisateur : admin
+- Mot de passe : openmediavault
+
+**Mise à jour du système** : Avant toute configuration, allez dans l’interface Système > Mise à jour et appliquez les mises à jour pour éviter tout bug lié à une version obsolète.
 
 ### 3. Configuration système
-1. Création des utilisateurs
-2. Configuration des disques
-3. Mise en place du RAID
-4. Configuration des partages
+Maintenant que votre NAS est installé, il est temps de le paramétrer selon vos besoins.
 
-## Plugins essentiels
+**Créer des utilisateurs** :
+Plutôt que d’utiliser admin pour tout, créez des comptes distincts pour chaque utilisateur sous **Système > Utilisateurs**. Cela permet une gestion plus sécurisée des accès.
+
+**Configurer les disques** :
+Dans **Stockage > Disques**, assurez-vous que vos disques sont bien détectés. Vous pouvez ensuite formater chaque disque dans Systèmes de fichiers, en optant pour EXT4 ou Btrfs selon votre usage.
+
+**Mise en place du RAID** :
+Si vous utilisez plusieurs disques, configurez un RAID logiciel sous **Stockage > Gestion RAID**. Je vous recommande de lire l'article [Comment choisir les disques durs pour votre NAS en 2025](/blog/hdd/guide-choix-disques-durs-nas-2025) pour plus de détails sur les différents types de RAID. 
+
+<table>
+  <thead>
+    <tr>
+      <th>Critère</th>
+      <th>EXT4</th>
+      <th>Btrfs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Stabilité</td>
+      <td>✅ Très stable</td>
+      <td>⚠️ Moins mature, mais fiable pour un usage NAS</td>
+    </tr>
+    <tr>
+      <td>Performances</td>
+      <td>✅ Rapide en accès direct</td>
+      <td>⚠️ Légèrement plus lent</td>
+    </tr>
+    <tr>
+      <td>Snapshots</td>
+      <td>❌ Non supportés</td>
+      <td>✅ Oui</td>
+    </tr>
+    <tr>
+      <td>Protection des données</td>
+      <td>❌ Pas de vérification d'intégrité</td>
+      <td>✅ Checksums + auto-réparation</td>
+    </tr>
+    <tr>
+      <td>Compression des fichiers</td>
+      <td>❌ Non</td>
+      <td>✅ Oui</td>
+    </tr>
+    <tr>
+      <td>RAID intégré</td>
+      <td>❌ Non (utiliser mdadm)</td>
+      <td>✅ Oui, mais RAID 5/6 déconseillé</td>
+    </tr>
+    <tr>
+      <td>Consommation RAM</td>
+      <td>✅ Faible</td>
+      <td>⚠️ Plus élevé (4 Go+ recommandé)</td>
+    </tr>
+  </tbody>
+</table>
+
+**Configurer les partages** :
+Allez dans **Services > SMB/CIFS** et activez le service de partage réseau. Vous pourrez ensuite créer des dossiers partagés et ajuster les droits d’accès pour chaque utilisateur.
+
+
+## Plugins essentiels pour OpenMediaVault
+
+Lorsque vous configurez votre NAS avec OpenMediaVault, l’un des intérêt est la possibilité d’**étendre ses 
+fonctionnalités** grâce aux **plugins**. Voici trois plugins que j'utilise et qui vous permettront d’exploiter 
+d'améliorer votre NAS.
 
 ### 1. Docker
-- Conteneurisation d'applications
-- Installation simple
-- Isolation des services
+Docker est le premier pas pour toute personne souhaitant **héberger des services sur son NAS** sans complexité. 
+Grâce à la conteneurisation, chaque application fonctionne de manière isolée, évitant ainsi les conflits 
+entre services et garantissant une meilleure **stabilité du système**.
+
+L'installation est très simple via **OMV-Extras**, et vous permet de déployer rapidement des applications comme 
+**Plex**, Nextcloud ou Home Assistant. Plutôt que d’installer manuellement chaque logiciel, il suffit d'ajouter 
+un conteneur et de le configurer en quelques clics. Cette approche est idéale pour ceux qui veulent expérimenter 
+sans risquer de casser leur installation principale.
 
 ### 2. Portainer
-- Gestion des conteneurs Docker
-- Interface graphique
-- Déploiement facile
+Alors Docker c'est génial, par contre l'utiliser en ligne de commande peut parfois s'avérer complexe, surtout au 
+début. C’est là qu'intervient **Portainer : une interface graphique qui facilite la gestion et le suivi 
+des conteneurs**.
 
-### 3. Backup
-- Sauvegarde du système
-- Réplication des données
-- Snapshots
+Grâce à Portainer, vous pouvez :
+- ✅ **Déployer rapidement des conteneurs** en quelques clics.
+- ✅ **Gérer les volumes et les réseaux** sans ligne de commande.
+- ✅ **Surveiller l'état des conteneurs** et redémarrer ceux qui en ont besoin.
 
-## Services et applications populaires
+Pour ceux qui découvrent Docker, Portainer est votre ami, rendant l’expérience beaucoup plus accessible et agréable.
 
-### Multimédia
-1. **Plex**
-```yaml
-version: '3'
-services:
-  plex:
-    image: linuxserver/plex
-    network_mode: host
-    environment:
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /chemin/config:/config
-      - /chemin/media:/media
-```
+### 3. Plex
+Si vous souhaitez centraliser, organiser et accéder à votre bibliothèque de films, séries, musiques et 
+photos depuis n'importe quel appareil, Plex est l'une des meilleures solutions. Ce plugin transforme votre NAS 
+en un serveur multimédia personnel, accessible en local et à distance. Certes il existe des alternatives comme
+[Emby](https://emby.media/) et [Jellyfin](https://jellyfin.org/), mais je vous propose Plex parce que j'utilise 
+depuis plusieurs années :).
 
-### Cloud personnel
-1. **Nextcloud**
-```yaml
-version: '3'
-services:
-  nextcloud:
-    image: nextcloud
-    ports:
-      - 8080:80
-    volumes:
-      - nextcloud:/var/www/html
-```
+#### Une gestion simple et efficace de votre bibliothèque
+Plex est conçu pour organiser automatiquement votre contenu multimédia. Il récupère les métadonnées, 
+les affiches et les résumés de vos films et séries, offrant ainsi une expérience proche des grandes 
+plateformes de streaming comme Netflix ou Disney+. Grâce à son interface fluide et intuitive, vous pouvez 
+parcourir vos collections avec des vignettes attractives et bien classées.
+Il propose aussi des playlists intelligentes et garde en mémoire où vous en êtes dans un film ou une série.
 
-### Téléchargement
-1. **Transmission**
-```yaml
-version: '3'
-services:
-  transmission:
-    image: linuxserver/transmission
-    ports:
-      - 9091:9091
-    volumes:
-      - /downloads:/downloads
-```
+#### Streaming sur tous vos appareils
+L'un des plus atouts de Plex est sa compatibilité avec une large gamme d’appareils. Vous pouvez regarder 
+vos films et séries depuis :
+- ✔ Votre TV connectée (Samsung, LG, Android TV, Apple TV, Fire Stick, Roku)
+- ✔ Votre smartphone ou tablette (iOS et Android)
+- ✔ Votre ordinateur (via navigateur web ou application)
+- ✔ Votre console de jeux (PlayStation, Xbox)
 
-## Optimisation des performances
+Peu importe l’appareil utilisé, Plex ajuste automatiquement le format de la vidéo pour une lecture fluide 
+sans saccade.
 
-### 1. Système de fichiers
-- **ext4** : Performance et stabilité
-- **btrfs** : Fonctionnalités avancées
-- **xfs** : Grands fichiers
+#### Transcodage : regardez vos fichiers partout, même en déplacement
+Plex ne se contente pas d’afficher vos fichiers bruts, il convertit (transcode) les vidéos à la volée pour 
+s’adapter à votre connexion et aux formats supportés par votre appareil.
 
-### 2. Configuration réseau
-- Jumbo frames
-- Agrégation de liens
-- Cache SMB
+## 🔹 Pourquoi le transcodage est important ?
 
-### 3. Optimisation Docker
-- Volumes bind
-- Réseau host
-- Limites ressources
+Votre téléviseur ne supporte pas un certain format vidéo ? Plex ajuste automatiquement la lecture.
 
-## Maintenance et sécurité
+Votre connexion Internet est limitée ? Plex réduit la qualité en temps réel pour éviter les coupures.
 
-### Sauvegardes
-1. Configuration système
-2. Données utilisateurs
-3. Conteneurs Docker
+Vous voulez regarder vos films en déplacement ? Le transcodage s’adapte au réseau mobile pour un streaming fluide.
 
-### Sécurité
-1. Pare-feu
-2. Fail2ban
-3. HTTPS
+💡 À savoir : Le transcodage demande une puissance CPU importante. Un processeur avec QuickSync (Intel) 
+ou une carte graphique compatible est recommandé pour éviter que votre NAS ne soit surchargé. C'est la raison pour 
+laquelle je vous recommande de ne pas négliger le choix du matériel. Certes pour du stockage, une petite 
+configuration est suffisante. Pour du streaming, il faut un processeur plus puissant. 
 
-### Monitoring
-1. Netdata
-2. Grafana
-3. Prometheus
-
-## Dépannage courant
-
-### Problèmes réseau
-1. Vérification DNS
-2. Test connectivité
-3. Logs système
-
-### Problèmes disques
-1. SMART monitoring
-2. Test performances
-3. Vérification RAID
-
-## Extensions du système
-
-### 1. Virtualisation
-- Proxmox
-- VirtualBox
-- KVM
-
-### 2. Surveillance
-- Motion
-- ZoneMinder
-- Shinobi
-
-### 3. Domotique
-- Home Assistant
-- OpenHAB
-- Node-RED
-
-## Comparaison des configurations
-
-### Usage familial (~500€)
-- i3-12100
-- 16Go RAM
-- 2x4To WD Red Plus
-- RAID 1
-
-### Petit bureau (~800€)
-- i5-12400
-- 32Go RAM
-- 4x4To IronWolf
-- RAID 5
-
-## Conclusion
-
-OpenMediaVault est idéal pour :
-- Utilisateurs débutants Linux
-- Projets à budget limité
-- Besoins en stockage simples
-- Environnement domestique
-
-Avantages clés :
-1. Installation simple
-2. Interface intuitive
-3. Communauté active
-4. Flexibilité Docker
-
-Pour réussir votre projet :
-1. Choisir du matériel compatible
-2. Planifier la capacité
-3. Prévoir les sauvegardes
-4. Documenter la configuration

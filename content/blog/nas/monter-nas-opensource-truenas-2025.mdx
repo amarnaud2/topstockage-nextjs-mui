@@ -2,7 +2,7 @@
 title: "Monter son NAS Open Source avec TrueNAS en 2025"
 slug: "monter-nas-opensource-truenas-2025"
 description: "Guide complet pour construire votre propre NAS avec TrueNAS : matériel recommandé, étapes d'installation et configuration optimale pour un stockage réseau performant et économique."
-datePublished: "2025-01-21"
+datePublished: "2025-01-29"
 dateRetired: ""
 author: "Arnaud"
 keywords:
@@ -13,83 +13,126 @@ keywords:
   - ZFS
   - stockage réseau
   - serveur
-image: "/images/truenas-setup.jpg"
-imageCopyright: "Photo de Jakub Zerdzicki: https://www.pexels.com/fr-fr/photo/noir-et-blanc-technologie-equipement-materiel-19825057/"
+image: "/images/blog/nas/truenas-setup.webp"
+imageCopyright: "Photo de Pixabay: https://www.pexels.com/fr-fr/photo/carte-mere-d-ordinateur-noire-159235/"
 canonical: "https://www.topstockage.fr/blog/nas/monter-nas-opensource-truenas-2025"
 ---
 
 # Monter son NAS Open Source avec TrueNAS en 2025
 
-TrueNAS (anciennement FreeNAS) est la solution open source la plus populaire pour créer son propre NAS. Découvrez comment monter votre serveur de stockage personnalisé avec un excellent rapport qualité/prix.
+TrueNAS (anciennement FreeNAS) est la solution open source la plus populaire pour créer son propre NAS. 
+Découvrez comment monter votre serveur de stockage personnalisé avec un bon rapport qualité/prix.
 
 ## Pourquoi choisir TrueNAS ?
 
-### Avantages
-- Gratuit et open source
-- Système de fichiers ZFS robuste
-- Nombreuses fonctionnalités professionnelles
-- Communauté active
-- Performance optimale
+Si vous cherchez une solution NAS **puissante, fiable et évolutive, TrueNAS** est un très bon choix. 
+Conçu pour ceux qui veulent un contrôle total sur leur stockage, il offre des fonctionnalités avancées tout 
+en restant **gratuit et open source**. Mais avant de vous lancer, voyons ensemble ses points forts et ses limites, 
+pour s’assurer qu’il correspond à vos besoins.
 
-### Inconvénients
-- Configuration initiale plus complexe
-- Nécessite des connaissances techniques
-- Support communautaire uniquement
+### 💪 Les atouts de TrueNAS
+L’un des plus grands avantages de TrueNAS est son **système de fichiers ZFS**, réputé pour sa robustesse et sa 
+gestion avancée des données. Contrairement aux formats classiques comme EXT4 ou NTFS, ZFS intègre nativement 
+des fonctions de **protection contre la corruption des fichiers**, des **snapshots instantanés** et une gestion 
+intelligente du RAID. Résultat ? Vos données sont sécurisées et votre stockage optimisé sans effort.
+
+De plus, **TrueNAS propose des fonctionnalités que l’on retrouve habituellement sur des solutions payantes** : 
+compression des fichiers, déduplication, gestion avancée des permissions et intégration avec des services cloud. 
+C’est un véritable monstre de performance, capable de tirer le meilleur parti de votre matériel, surtout si 
+vous utilisez de la RAM ECC et un processeur puissant.
+
+Autre point positif : la communauté TrueNAS est très active. Que ce soit sur les forums, Reddit ou Discord, 
+vous trouverez toujours des passionnés prêts à vous aider et à partager leur expérience.
+
+✔ TrueNAS est donc adapté si vous voulez une solution NAS professionnelle sans compromis sur la qualité.
+
+### ⚠️ Les défis de TrueNAS
+**TrueNAS** est puissant, mais il **n’est pas le plus accessible pour les débutants**. Contrairement à 
+OpenMediaVault, son installation et sa configuration demandent plus de connaissances techniques. 
+Il faut comprendre ZFS, la gestion du stockage en RAID, et l’administration réseau pour en tirer pleinement parti.
+
+Autre point important : il n’existe **pas de support officiel gratuit**. Si vous avez un problème, vous devrez 
+compter sur la communauté ou **souscrire à une offre payante** pour bénéficier d’un support professionnel. 
+Cela peut être un frein si vous cherchez une solution clé en main et facile à maintenir.
+
+Enfin, TrueNAS est plus exigeant en matériel que d’autres solutions NAS. Il est recommandé d’avoir au moins 
+8 Go de RAM (16 Go pour des performances optimales) et, si possible, d’utiliser de la mémoire ECC pour éviter 
+toute corruption des données.
 
 ## Configuration matérielle recommandée
 
-### Configuration de base (Budget ~500€)
-- **Processeur** : Intel Core i3-12100 (119.99€)
-  - 4 cœurs/8 threads
-  - Excellent rapport performance/prix
-  [Voir sur Amazon](#)
+💡 Objectif : Une configuration TrueNAS polyvalente, performante et optimisée pour le stockage professionnel, 
+le streaming et le transcodage Plex.
 
-- **Carte mère** : ASRock B660M Pro RS (89.99€)
-  - 6 ports SATA
-  - Support ECC (optionnel)
-  [Voir sur Amazon](#)
+<table>
+  <thead>
+    <tr>
+      <th>Composant</th>
+      <th>Modèle</th>
+      <th>Caractéristiques principales</th>
+      <th>Prix</th>
+      <th>Lien vers Amazon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Processeur</td>
+      <td>Intel Core i7-12700</td>
+      <td>12 cœurs (8P + 4E) / 20 threads, Quick Sync Video pour le transcodage, TDP 65W (125W 12700K)</td>
+      <td>~329,95€</td>
+      <td><a href="https://amzn.to/3PWyBhO" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Carte mère</td>
+      <td>ASUS PRIME B660-PLUS D4</td>
+      <td>4 ports SATA 6Gb/s, 3 slots M.2 NVMe, Compatible DDR4, PCIe 4.0 x16</td>
+      <td>~134,99€</td>
+      <td><a href="https://amzn.to/3WEHfW4" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Mémoire RAM</td>
+      <td>DDR4 ECC</td>
+      <td>32 Go, 3200 MHz, ECC pour ZFS, idéal pour Plex multi-flux</td>
+      <td>~139,99€</td>
+      <td><a href="https://amzn.to/4jDVnbP" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Carte réseau</td>
+      <td>Intel X550-T2</td>
+      <td>2 ports 10GbE pour des transferts ultra-rapides</td>
+      <td>~139,35€</td>
+      <td><a href="https://amzn.to/3WIRvfV" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Boîtier</td>
+      <td>Fractal Design Define 7 XL</td>
+      <td>18+ emplacements disques, silence optimisé</td>
+      <td>~269,95€</td>
+      <td><a href="https://amzn.to/3WBtFTi" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+    <tr>
+      <td>Alimentation</td>
+      <td>Seasonic Focus GX-750</td>
+      <td>750W, rendement Gold, garantie 10 ans</td>
+      <td>~157,68€</td>
+      <td><a href="https://amzn.to/3CxelQS" target="_blank" rel="nofollow">🔗 Voir sur Amazon</a></td>
+    </tr>
+  </tbody>
+</table>
 
-- **RAM** : 16Go DDR4 ECC (89.99€)
-  - 2x8Go pour dual channel
-  - ECC recommandé pour ZFS
-  [Voir sur Amazon](#)
+💰 Coût total estimé : ~1050€
 
-- **Boîtier** : Fractal Design Node 804 (129.99€)
-  - 8 emplacements 3.5"
-  - Bonne ventilation
-  - Compact
-  [Voir sur Amazon](#)
+📌 Pourquoi ce choix ?
+- ✅ Processeur puissant avec Quick Sync pour le transcodage Plex, faites attention aux TDP pour la consommation d'énergie
+- ✅ RAM ECC pour la protection des données avec ZFS
+- ✅ Réseau 10GbE pour des transferts ultra-rapides, vous pouvez opter pour une Intel X710-T2L également très stable mais qui chauffe légèrement plus
+- ✅ Large capacité d'évolution avec le boîtier Define 7 XL
+- ✅ Alimentation puissante capable de maintenir une bonne qualité d'alimentation 
 
-- **Alimentation** : Be Quiet! Pure Power 11 500W (69.99€)
-  - Fiable et silencieuse
-  - Rendement 80+ Gold
-  [Voir sur Amazon](#)
+💡 Conseil :
+Ne négligez pas la qualité du câble réseau qui relie votre NAS à votre routeur : il peut être dégradé et 
+causer des pertes de données et des dégradations de performances.
 
-### Configuration avancée (Budget ~1000€)
-- **Processeur** : Intel Core i5-13600K (319.99€)
-  - Pour la virtualisation
-  - Transcoding média
-  [Voir sur Amazon](#)
-
-- **Carte mère** : ASUS ProArt B760-CREATOR (199.99€)
-  - 8 ports SATA
-  - 2.5GbE intégré
-  [Voir sur Amazon](#)
-
-- **RAM** : 32Go DDR4 ECC (179.99€)
-  - 2x16Go
-  - Pour applications lourdes
-  [Voir sur Amazon](#)
-
-- **Boîtier** : Fractal Design Define 7 XL (199.99€)
-  - 18+ emplacements disques
-  - Silence optimisé
-  [Voir sur Amazon](#)
-
-- **Alimentation** : Seasonic Focus GX-750 (129.99€)
-  - Pour évolution future
-  - Garantie 10 ans
-  [Voir sur Amazon](#)
 
 ## Choix des disques
 
@@ -103,75 +146,59 @@ TrueNAS (anciennement FreeNAS) est la solution open source la plus populaire pou
    - Plus sécurisé
 
 ### Disques recommandés
-- **WD Red Plus** : Excellent rapport qualité/prix
-- **Seagate IronWolf** : Performances supérieures
-- **WD Red Pro** : Usage intensif
-
-[Guide complet sur le choix des disques pour NAS](#)
+Je vous oriente vers l'article [Comment choisir les disques durs pour votre NAS en 2025](/blog/hdd/guide-choix-disques-durs-nas-2025) pour vous guider.
 
 ## Installation et configuration
+TrueNAS est l’une des meilleures solutions pour transformer un serveur en un **système de stockage fiable et 
+performant**. Mais avant de profiter pleinement de ses fonctionnalités, il faut passer par une installation et 
+une configuration bien pensées. Voici comment procéder, étape par étape.
 
 ### 1. Préparation
-1. Télécharger TrueNAS CORE
-2. Créer une clé USB bootable
-3. Assembler le matériel
-4. Configurer le BIOS
+Avant d’installer TrueNAS, il faut s’assurer d’avoir le bon matériel et les outils nécessaires pour une 
+configuration fluide.
+
+- **Télécharger TrueNAS CORE** : Rendez-vous sur le [site officiel de TrueNAS](https://www.truenas.com/download-truenas-core/) pour récupérer la dernière version. 
+Il est recommandé de choisir la version CORE pour une utilisation domestique ou professionnelle gratuite.
+- **Créer une clé USB bootable** : Utilisez un logiciel comme Rufus (Windows) ou balenaEtcher (Mac/Linux) pour 
+copier l’image ISO de TrueNAS sur une clé USB (8 Go minimum).
+- **Assembler le matériel** : Vérifiez que votre configuration matérielle est prête : disque système, disques de 
+stockage, processeur compatible et mémoire RAM suffisante.
+- Configurer le BIOS :
+   - Activer le **mode UEFI**.
+   - Désactiver le Secure Boot pour éviter tout blocage.
+   - Sélectionner la **clé USB comme périphérique de démarrage principal**.
+
+Avec cette préparation, vous êtes prêt à passer à l’installation ! 🚀
 
 ### 2. Installation TrueNAS
-1. Boot sur la clé USB
-2. Suivre l'assistant d'installation
-3. Configurer le réseau
-4. Créer le pool ZFS
+Maintenant que tout est prêt, vous pouvez installer TrueNAS sur votre machine.
+
+- **Démarrer sur la clé USB : Insérez la clé dans le NAS, redémarrez la machine et sélectionnez-la dans le menu 
+de démarrage (généralement via F12 ou Esc).
+- **Suivre l’assistant d’installation** : TrueNAS guide l’utilisateur pas à pas. Il suffit de sélectionner le 
+disque où installer le système (évitez d’installer sur un disque de stockage !). Personnellement, j'installe le 
+système sur un SSD dédié. Ici ce pourrait être sur un M2. 
+- **Configurer le réseau** : Assurez-vous que votre serveur est bien connecté en Ethernet. Vous pouvez attribuer 
+une adresse IP statique pour éviter les changements automatiques par le DHCP.
+- **Créer un pool ZFS** : ZFS gère la structure de stockage et la redondance des données. Vous pouvez choisir :
+   - RAID-Z1 (équivalent RAID 5) : un bon équilibre entre capacité et sécurité.
+   - RAID-Z2 (équivalent RAID 6) : meilleure sécurité avec deux disques de redondance.
+   - RAID-Z3 : pour les infrastructures critiques nécessitant une très haute tolérance aux pannes.
+
+Une fois ces étapes terminées, TrueNAS est installé et prêt à être configuré ! 🎉
 
 ### 3. Configuration avancée
-1. Mise en place des partages
-2. Configuration des sauvegardes
-3. Installation des plugins
+Après l’installation, il faut ajuster plusieurs paramètres pour que votre NAS fonctionne efficacement et en 
+toute sécurité.
 
-## Fonctionnalités essentielles
+- Mise en place des partages : Dans l’interface web de TrueNAS, créez vos premiers dossiers partagés via 
+SMB (Windows), NFS (Linux) ou AFP (Mac). Vous pourrez ainsi accéder à vos fichiers depuis tous vos appareils.
+- Configuration des sauvegardes : Activez les snapshots ZFS pour garder des versions de vos fichiers et 
+faciliter la récupération en cas de problème. Vous pouvez aussi configurer une sauvegarde locale ou 
+distante (vers un autre NAS ou un service cloud).
+- Installation des plugins : TrueNAS permet d’ajouter des services comme Plex (pour le streaming multimédia), 
+Nextcloud (pour un cloud personnel).
 
-### Stockage et partage
-- Partages SMB/CIFS (Windows)
-- NFS (Linux/Mac)
-- AFP (Mac legacy)
-- iSCSI
-
-### Applications populaires
-1. **Plex Media Server**
-   - Streaming média
-   - Transcoding matériel
-
-2. **NextCloud**
-   - Cloud personnel
-   - Synchronisation fichiers
-
-3. **Transmission**
-   - Client torrent
-   - Programmation téléchargements
-
-## Optimisation et maintenance
-
-### Performance
-1. Configuration du cache ZFS
-2. Optimisation réseau
-3. Monitoring système
-
-### Sauvegardes
-1. Snapshots automatiques
-2. Réplication distante
-3. Cloud Backup
-
-## Budget total par configuration
-
-### Configuration basique
-- Matériel : ~500€
-- 4x 4To WD Red Plus : ~400€
-- **Total** : ~900€
-
-### Configuration avancée
-- Matériel : ~1000€
-- 6x 8To IronWolf Pro : ~1200€
-- **Total** : ~2200€
 
 ## Comparaison coût/bénéfice
 
@@ -190,19 +217,14 @@ TrueNAS (anciennement FreeNAS) est la solution open source la plus populaire pou
 ## Conclusion
 
 Monter son propre NAS avec TrueNAS est une excellente option pour :
-- Les utilisateurs techniques
+- Les utilisateurs techniques ou qui peuvent bénéficier du support d'un professionnel
 - Les budgets importants en stockage
 - Besoin de performances maximales
-- Volonté de contrôle total
+- Volonté de contrôle total (fonctionnalité, confidentialité des données, ...)
 
 L'investissement initial est plus important qu'un NAS commercial, mais offre :
-- Meilleures performances
-- Plus grande évolutivité
-- Coût par To inférieur
+- Meilleures performances et durabilité
+- Plus grande évolutivité (possibilité de rajouter des disques à la demande en fonction de l'espace dans le boîtier choisi)
+- Coût par To inférieur (plus vous ajouter des disques et plus le ratio To/prix diminue)
 - Fonctionnalités professionnelles
 
-Pour réussir votre projet :
-1. Choisir du matériel fiable
-2. Ne pas négliger la RAM ECC
-3. Prévoir la capacité future
-4. Documenter votre installation
